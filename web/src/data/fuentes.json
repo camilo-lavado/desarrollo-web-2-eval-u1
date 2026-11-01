@@ -320,5 +320,49 @@
     "url": "https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes",
     "estado": "leída",
     "fechaConsulta": "31 de octubre de 2026"
+  },
+  {
+    "id": "F29",
+    "pauta": false,
+    "autor": "Laravel",
+    "anio": "s. f.",
+    "titulo": "Installation",
+    "en": "Laravel 13.x Documentation",
+    "url": "https://laravel.com/docs/installation",
+    "estado": "leída",
+    "fechaConsulta": "1 de noviembre de 2026"
+  },
+  {
+    "id": "F30",
+    "pauta": false,
+    "autor": "Laravel",
+    "anio": "s. f.",
+    "titulo": "Configuration",
+    "en": "Laravel 13.x Documentation",
+    "url": "https://laravel.com/docs/configuration",
+    "estado": "leída",
+    "fechaConsulta": "1 de noviembre de 2026"
+  },
+  {
+    "id": "F31",
+    "pauta": false,
+    "autor": "Laravel",
+    "anio": "s. f.",
+    "titulo": "Eloquent: Getting Started",
+    "en": "Laravel 13.x Documentation",
+    "url": "https://laravel.com/docs/eloquent",
+    "estado": "leída",
+    "fechaConsulta": "1 de noviembre de 2026"
+  },
+  {
+    "id": "F32",
+    "pauta": false,
+    "autor": "Laravel",
+    "anio": "s. f.",
+    "titulo": "Validation",
+    "en": "Laravel 13.x Documentation",
+    "url": "https://laravel.com/docs/validation",
+    "estado": "leída",
+    "fechaConsulta": "1 de noviembre de 2026"
   }
 ]

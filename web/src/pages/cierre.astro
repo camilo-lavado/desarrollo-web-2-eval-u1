@@ -101,7 +101,7 @@ const fuentesCierre = fuentesAll.filter((f) => idsCierre.includes(f.id));
             El código de partida que me dio un asistente de IA tenía tres patrones de Spring Boot 3: el <em>starter</em> <code>spring-boot-starter-web</code> en lugar de <code>webmvc</code>, la importación antigua de <code>@WebMvcTest</code> y la falta del módulo <code>spring-boot-h2console</code>. Lo detecté al compilar y comparar con la documentación. Hoy la IA genera gran parte del código, así que para alguien de último año importa más entender las capas y las configuraciones que memorizar sintaxis: un buen desarrollador tiene que saber corregir lo que ella produce.
           </p>
           <p>
-            De aquí en adelante voy a tratar de entender el concepto detrás de cada tecnología que use. Este trabajo dejó una pregunta sin responder: por qué se elige Spring Boot frente a otras alternativas. Es lo que quiero investigar después.
+            De aquí en adelante voy a tratar de entender el concepto detrás de cada tecnología que use. Para responder por qué se elige Spring Boot, lo comparé con programar solo en Java y con Laravel, usando la documentación de cada uno. La comparación me mostró que ambos resuelven lo repetitivo (configuración, inyección de dependencias, acceso a datos y validación) y que lo que cambia es el lenguaje y la forma de ejecutar el sistema. No comparé rendimiento ni otros frameworks, y eso es lo que quiero investigar después.
           </p>
         </div>
       </FichaTecnica>
