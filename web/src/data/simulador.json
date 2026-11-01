@@ -1,0 +1,429 @@
+{
+  "capas": [
+    {
+      "id": "cliente",
+      "color": "var(--cliente)",
+      "titulo": "Cliente",
+      "subtitulo": "Navegador, curl o app",
+      "clase": "HTTP"
+    },
+    {
+      "id": "disp",
+      "color": "var(--dispatcher)",
+      "titulo": "DispatcherServlet",
+      "subtitulo": "El recepcionista: recibe y reparte",
+      "clase": "Tomcat 11.0.27"
+    },
+    {
+      "id": "ctrl",
+      "color": "var(--controller)",
+      "titulo": "Controlador",
+      "subtitulo": "Recibe el DTO y delega",
+      "clase": "CitaController (@RestController)"
+    },
+    {
+      "id": "serv",
+      "color": "var(--service)",
+      "titulo": "Servicio",
+      "subtitulo": "Reglas del negocio y transacción",
+      "clase": "CitaService (@Service)"
+    },
+    {
+      "id": "repo",
+      "color": "var(--repo)",
+      "titulo": "Repositorio y BD",
+      "subtitulo": "Habla con la base de datos",
+      "clase": "CitaRepository (JpaRepository)"
+    }
+  ],
+  "preguntaDiseno": {
+    "enunciado": "¿Dónde debe vivir la regla «un médico no puede tener dos citas en el mismo bloque»?",
+    "opciones": [
+      "En el controlador, antes de llamar al servicio",
+      "En el servicio, con apoyo de una restricción en la base de datos",
+      "En la entidad JSON que devuelve el controlador"
+    ],
+    "correcta": 1,
+    "feedbackOk": "Correcto: necesita consultar datos y ejecutarse dentro de @Transactional, así que pertenece a CitaService (con respaldo de integridad en la base de datos frente a peticiones simultáneas). Referencia: [F20, F24].",
+    "feedbackError": "Todavía no: el controlador solo traduce HTTP y la entidad es un modelo de persistencia. Una regla de negocio que consulta disponibilidad va en @Service."
+  },
+  "escenarios": {
+    "201": {
+      "codigo": "201",
+      "etiqueta": "201 Creada (camino feliz)",
+      "esError": false,
+      "comandoReal": "$ curl -i -X POST http://localhost:8080/api/v1/citas -H 'Content-Type: application/json' -d '{\"pacienteId\":1,\"medicoId\":1,\"fechaHora\":\"2026-11-02T09:30:00\",\"motivo\":\"Control\"}'",
+      "pasos": [
+        {
+          "capa": 0,
+          "etiquetaPaquete": "POST /citas",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Ana pide su hora para el lunes 2-nov-2026 a las 09:30",
+          "explicacion": "El cliente ejecuta POST /api/v1/citas con Content-Type: application/json y el cuerpo {\"pacienteId\":1,\"medicoId\":1,\"fechaHora\":\"2026-11-02T09:30:00\",\"motivo\":\"Control\"}.",
+          "entra": "Método POST, URL /api/v1/citas, cabeceras y JSON",
+          "sale": "Petición HTTP hacia el conector de Tomcat 11.0.27"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "JSON → DTO",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El recepcionista la recibe y valida formato",
+          "explicacion": "Tomcat asigna un hilo. El DispatcherServlet consulta RequestMappingHandlerMapping, Jackson 3 (tools.jackson.databind.json.JsonMapper) convierte el JSON en el record AgendarCitaRequest y @Valid comprueba @NotNull y @Future.",
+          "entra": "Petición HTTP con cuerpo JSON",
+          "sale": "AgendarCitaRequest validado y método CitaController#agendar elegido"
+        },
+        {
+          "capa": 2,
+          "etiquetaPaquete": "agendar()",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El controlador delega",
+          "explicacion": "CitaController#agendar recibe el DTO ya validado y llama a citaService.agendar(request). No consulta repositorios ni decide reglas médicas.",
+          "entra": "AgendarCitaRequest",
+          "sale": "Llamada a citaService.agendar(request)"
+        },
+        {
+          "capa": 3,
+          "etiquetaPaquete": "reglas RN-01..04",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El servicio aplica las reglas de negocio",
+          "explicacion": "Dentro de @Transactional, CitaService comprueba que el paciente 1 (Ana Soto) y el médico 1 (Dra. Fernanda Rojas) existen, que el lunes 09:30 cumple el horario hábil en bloque de 30 minutos y que existsByMedicoIdAndFechaHoraAndEstado devuelve false.",
+          "entra": "AgendarCitaRequest",
+          "sale": "Entidad Cita en estado AGENDADA lista para guardar",
+          "mostrarPregunta": true
+        },
+        {
+          "capa": 4,
+          "etiquetaPaquete": "INSERT",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El repositorio guarda en la base de datos",
+          "explicacion": "CitaRepository.save(cita): Hibernate 7.4.13.Final genera insert into citas (estado, fecha_hora, medico_id, motivo, paciente_id, id) values (?, ?, ?, ?, ?, default) tomando una conexión de HikariCP 7.0.2.",
+          "entra": "Entidad Cita",
+          "sale": "Fila insertada con id = 1 autogenerado"
+        },
+        {
+          "capa": 3,
+          "etiquetaPaquete": "entidad → DTO",
+          "direccion": "vuelta",
+          "modo": "back",
+          "titulo": "Transformación de Entidad a DTO",
+          "explicacion": "CitaResponse.desde(cita) convierte la entidad Cita guardada en el record inmutable CitaResponse con los 6 campos públicos.",
+          "entra": "Entidad Cita persistida (id=1)",
+          "sale": "Record CitaResponse"
+        },
+        {
+          "capa": 2,
+          "etiquetaPaquete": "201 Created",
+          "direccion": "vuelta",
+          "modo": "back",
+          "titulo": "El controlador arma la respuesta HTTP",
+          "explicacion": "ResponseEntity.created(URI.create(\"/api/v1/citas/\" + cita.getId())).body(CitaResponse.desde(cita)) fija el código 201 y la cabecera Location: /api/v1/citas/1.",
+          "entra": "CitaResponse",
+          "sale": "ResponseEntity<CitaResponse> (201 Created)"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "DTO → JSON",
+          "direccion": "vuelta",
+          "modo": "back",
+          "titulo": "Jackson 3 escribe el JSON de salida",
+          "explicacion": "JacksonJsonHttpMessageConverter serializa el record CitaResponse a JSON y el DispatcherServlet entrega la respuesta a Tomcat.",
+          "entra": "ResponseEntity<CitaResponse>",
+          "sale": "Cuerpo JSON con Content-Type: application/json"
+        },
+        {
+          "capa": 0,
+          "etiquetaPaquete": "201 + Location",
+          "direccion": "vuelta",
+          "modo": "back",
+          "titulo": "Ana recibe la confirmación de su cita",
+          "explicacion": "El cliente recibe HTTP/1.1 201, Location: /api/v1/citas/1 y el comprobante JSON de Ana Soto con la Dra. Fernanda Rojas.",
+          "entra": "Respuesta HTTP 201",
+          "sale": "Cita médica agendada",
+          "fin": "201"
+        }
+      ]
+    },
+    "400": {
+      "codigo": "400",
+      "etiqueta": "400 Validación @Valid",
+      "esError": true,
+      "comandoReal": "$ curl -i -X POST http://localhost:8080/api/v1/citas -H 'Content-Type: application/json' -d '{\"pacienteId\":1,\"medicoId\":1,\"fechaHora\":\"2020-01-05T09:00:00\",\"motivo\":\"Control\"}'",
+      "pasos": [
+        {
+          "capa": 0,
+          "etiquetaPaquete": "POST /citas",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Ana envía una fecha del pasado (2020-01-05)",
+          "explicacion": "El cuerpo JSON enviado contiene \"fechaHora\":\"2020-01-05T09:00:00\".",
+          "entra": "JSON con fecha en 2020",
+          "sale": "Petición HTTP hacia el servidor"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "@Valid falla",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "Hibernate Validator 9.1.5 detiene la petición antes del controlador",
+          "explicacion": "La anotación @Future del record AgendarCitaRequest rechaza la fecha. Spring lanza MethodArgumentNotValidException y ni el controlador ni el servicio llegan a ejecutarse.",
+          "entra": "AgendarCitaRequest con fecha en el pasado",
+          "sale": "MethodArgumentNotValidException"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "ProblemDetail",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "GlobalExceptionHandler (@RestControllerAdvice) responde",
+          "explicacion": "handleMethodArgumentNotValid construye un ProblemDetail (RFC 9457) con status 400, title \"Solicitud inválida\" y errores: [{\"campo\":\"fechaHora\",\"mensaje\":\"la fecha debe ser futura\"}].",
+          "entra": "MethodArgumentNotValidException",
+          "sale": "ProblemDetail (400 Bad Request, application/problem+json)"
+        },
+        {
+          "capa": 0,
+          "etiquetaPaquete": "400 Bad Request",
+          "direccion": "vuelta",
+          "modo": "bad",
+          "titulo": "Ana ve exactamente qué campo debe corregir",
+          "explicacion": "El cliente recibe HTTP/1.1 400 sin haber abierto ninguna transacción ni tocado la base de datos.",
+          "entra": "ProblemDetail serializado a JSON",
+          "sale": "Mensaje claro de error de validación",
+          "fin": "400"
+        }
+      ]
+    },
+    "404": {
+      "codigo": "404",
+      "etiqueta": "404 RN-01 (médico no existe)",
+      "esError": true,
+      "comandoReal": "$ curl -i -X POST http://localhost:8080/api/v1/citas -H 'Content-Type: application/json' -d '{\"pacienteId\":1,\"medicoId\":999,\"fechaHora\":\"2026-11-02T09:30:00\",\"motivo\":\"Control\"}'",
+      "pasos": [
+        {
+          "capa": 0,
+          "etiquetaPaquete": "POST /citas",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Ana solicita al médico 999",
+          "explicacion": "El JSON tiene formato válido y fecha futura (2026-11-02T09:30:00), pero pide medicoId: 999.",
+          "entra": "JSON con formato válido (medicoId: 999)",
+          "sale": "Petición HTTP hacia el servidor"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "JSON → DTO",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Pasa la validación sintáctica @Valid",
+          "explicacion": "AgendarCitaRequest cumple @NotNull y @Future: la validación de formato no sabe si el médico 999 existe en la base de datos.",
+          "entra": "Petición HTTP",
+          "sale": "AgendarCitaRequest validado"
+        },
+        {
+          "capa": 2,
+          "etiquetaPaquete": "agendar()",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El controlador delega en el servicio",
+          "explicacion": "CitaController#agendar invoca a citaService.agendar(request).",
+          "entra": "AgendarCitaRequest",
+          "sale": "Llamada al servicio"
+        },
+        {
+          "capa": 3,
+          "etiquetaPaquete": "médico 999 ¿?",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "El servicio no encuentra al médico 999 (RN-01)",
+          "explicacion": "CitaService consulta medicoRepository.findById(999L), recibe Optional.empty() y lanza RecursoNoEncontradoException(\"No existe el médico 999\").",
+          "entra": "medicoId = 999",
+          "sale": "RecursoNoEncontradoException"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "ProblemDetail",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "GlobalExceptionHandler traduce a 404 Not Found",
+          "explicacion": "manejarRecursoNoEncontrado captura RecursoNoEncontradoException y devuelve un ProblemDetail con status 404 y detail \"No existe el médico 999\".",
+          "entra": "RecursoNoEncontradoException",
+          "sale": "ProblemDetail (404 Not Found)"
+        },
+        {
+          "capa": 0,
+          "etiquetaPaquete": "404 Not Found",
+          "direccion": "vuelta",
+          "modo": "bad",
+          "titulo": "Ana recibe el aviso de recurso no encontrado",
+          "explicacion": "El cliente recibe HTTP/1.1 404 con Content-Type: application/problem+json.",
+          "entra": "ProblemDetail JSON",
+          "sale": "Aviso 404 al cliente",
+          "fin": "404"
+        }
+      ]
+    },
+    "409": {
+      "codigo": "409",
+      "etiqueta": "409 RN-04 (bloque ocupado)",
+      "esError": true,
+      "comandoReal": "$ curl -i -X POST http://localhost:8080/api/v1/citas -H 'Content-Type: application/json' -d '{\"pacienteId\":1,\"medicoId\":1,\"fechaHora\":\"2026-11-02T09:30:00\",\"motivo\":\"Control\"}'",
+      "pasos": [
+        {
+          "capa": 0,
+          "etiquetaPaquete": "POST /citas",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Se repite la solicitud para el mismo médico y bloque horario",
+          "explicacion": "El médico 1 ya tiene agendada la cita del 2026-11-02T09:30:00 creada en el paso anterior.",
+          "entra": "JSON válido",
+          "sale": "Petición HTTP hacia el servidor"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "JSON → DTO",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Pasa la validación de formato",
+          "explicacion": "El formato del JSON y las restricciones @NotNull/@Future son válidos.",
+          "entra": "Petición HTTP",
+          "sale": "AgendarCitaRequest validado"
+        },
+        {
+          "capa": 2,
+          "etiquetaPaquete": "agendar()",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El controlador delega en el servicio",
+          "explicacion": "Entrega el DTO a citaService.agendar(request).",
+          "entra": "AgendarCitaRequest",
+          "sale": "Llamada al servicio"
+        },
+        {
+          "capa": 3,
+          "etiquetaPaquete": "regla RN-04",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El servicio consulta la disponibilidad del bloque (RN-04)",
+          "explicacion": "CitaService invoca citaRepository.existsByMedicoIdAndFechaHoraAndEstado(1L, 2026-11-02T09:30, EstadoCita.AGENDADA).",
+          "entra": "medicoId=1, fechaHora=2026-11-02T09:30, AGENDADA",
+          "sale": "Invocación a existsByMedicoIdAndFechaHoraAndEstado",
+          "mostrarPregunta": true
+        },
+        {
+          "capa": 4,
+          "etiquetaPaquete": "SELECT",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El repositorio ejecuta el SELECT en la base de datos",
+          "explicacion": "Hibernate ejecuta select c1_0.id from citas c1_0 where c1_0.medico_id=? and c1_0.fecha_hora=? and c1_0.estado=? fetch first ? rows only y devuelve true.",
+          "entra": "Criterios de búsqueda",
+          "sale": "true (bloque ocupado)"
+        },
+        {
+          "capa": 3,
+          "etiquetaPaquete": "ocupado",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "El servicio rechaza la reserva duplicada",
+          "explicacion": "Al recibir true, CitaService lanza HorarioNoDisponibleException(\"El médico ya tiene una cita agendada en ese bloque horario\") y revierte la transacción sin hacer INSERT.",
+          "entra": "bloqueOcupado = true",
+          "sale": "HorarioNoDisponibleException"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "ProblemDetail",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "GlobalExceptionHandler responde 409 Conflict",
+          "explicacion": "manejarHorarioNoDisponible traduce HorarioNoDisponibleException en un ProblemDetail con status 409 y title \"Bloque horario ocupado\".",
+          "entra": "HorarioNoDisponibleException",
+          "sale": "ProblemDetail (409 Conflict)"
+        },
+        {
+          "capa": 0,
+          "etiquetaPaquete": "409 Conflict",
+          "direccion": "vuelta",
+          "modo": "bad",
+          "titulo": "Ana recibe 409 Conflict y puede elegir otro bloque",
+          "explicacion": "El cliente recibe HTTP/1.1 409 con el ProblemDetail indicando que el bloque horario ya está ocupado.",
+          "entra": "ProblemDetail JSON",
+          "sale": "Mensaje 409 al cliente",
+          "fin": "409"
+        }
+      ]
+    },
+    "422": {
+      "codigo": "422",
+      "etiqueta": "422 RN-03 (solo lunes a viernes)",
+      "esError": true,
+      "comandoReal": "$ curl -i -X POST http://localhost:8080/api/v1/citas -H 'Content-Type: application/json' -d '{\"pacienteId\":1,\"medicoId\":1,\"fechaHora\":\"2026-11-08T10:00:00\",\"motivo\":\"Control\"}'",
+      "pasos": [
+        {
+          "capa": 0,
+          "etiquetaPaquete": "POST /citas",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Ana pide hora para el domingo 8-nov-2026 a las 10:00",
+          "explicacion": "La fecha 2026-11-08T10:00:00 es futura y bien formada, pero cae en día domingo.",
+          "entra": "JSON con fecha en domingo",
+          "sale": "Petición HTTP hacia el servidor"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "JSON → DTO",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "Pasa la validación sintáctica @Valid",
+          "explicacion": "2026-11-08T10:00:00 cumple @NotNull y @Future; la regla de días hábiles pertenece al dominio clínico.",
+          "entra": "Petición HTTP",
+          "sale": "AgendarCitaRequest validado"
+        },
+        {
+          "capa": 2,
+          "etiquetaPaquete": "agendar()",
+          "direccion": "ida",
+          "modo": "",
+          "titulo": "El controlador delega en el servicio",
+          "explicacion": "CitaController#agendar invoca a citaService.agendar(request).",
+          "entra": "AgendarCitaRequest",
+          "sale": "Llamada al servicio"
+        },
+        {
+          "capa": 3,
+          "etiquetaPaquete": "regla RN-03",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "validarHorarioDeAtencion rechaza el día domingo (RN-03)",
+          "explicacion": "CitaService verifica fechaHora.getDayOfWeek() == DayOfWeek.SUNDAY y lanza ReglaNegocioException(\"Solo se atiende de lunes a viernes\").",
+          "entra": "DayOfWeek.SUNDAY",
+          "sale": "ReglaNegocioException"
+        },
+        {
+          "capa": 1,
+          "etiquetaPaquete": "ProblemDetail",
+          "direccion": "error",
+          "modo": "bad",
+          "titulo": "GlobalExceptionHandler responde 422 Unprocessable Entity",
+          "explicacion": "manejarReglaNegocio traduce ReglaNegocioException en un ProblemDetail con status 422 y title \"Fuera de las reglas de atención\".",
+          "entra": "ReglaNegocioException",
+          "sale": "ProblemDetail (422 Unprocessable Entity)"
+        },
+        {
+          "capa": 0,
+          "etiquetaPaquete": "422 Regla negocio",
+          "direccion": "vuelta",
+          "modo": "bad",
+          "titulo": "Ana recibe 422 indicando el horario hábil de lunes a viernes",
+          "explicacion": "El cliente recibe HTTP/1.1 422 diferenciando claramente un error semántico de negocio (422) de un error sintáctico de formato (400).",
+          "entra": "ProblemDetail JSON",
+          "sale": "Mensaje 422 al cliente",
+          "fin": "422"
+        }
+      ]
+    }
+  }
+}

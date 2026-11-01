@@ -1,0 +1,35 @@
+flowchart LR
+    classDef centro fill:#0B6E5F,color:#FFFFFF,stroke:#0B6E5F,stroke-width:2px
+    classDef r1 fill:#FFFFFF,color:#16302B,stroke:#0B6E5F,stroke-width:2px
+    classDef r2 fill:#FFFFFF,color:#16302B,stroke:#2F6BDB,stroke-width:2px
+    classDef r3 fill:#FFFFFF,color:#16302B,stroke:#1F9D6B,stroke-width:2px
+    classDef r4 fill:#FFFFFF,color:#16302B,stroke:#D99A00,stroke-width:2px
+    classDef r5 fill:#FFFFFF,color:#16302B,stroke:#E4572E,stroke-width:2px
+
+    SB["Spring Boot 4.1<br/>Reserva de Horas Médicas"]:::centro
+
+    M["1. Motor<br/>@SpringBootApplication"]:::r1
+    M1["Auto-configuración (@ConditionalOn...)<br/>Contenedor IoC/DI y Tomcat 11"]:::r1
+
+    A["2. Arquitectura MVC"]:::r2
+    A1["DispatcherServlet -> CitaController<br/>-> CitaService -> CitaRepository -> BD"]:::r2
+
+    C["3. Configuración"]:::r3
+    C1["pom.xml (BOM y starters)<br/>properties / yml y perfiles dev/prod"]:::r3
+
+    B["4. Buenas prácticas"]:::r4
+    B1["Paquetes unidireccionales, DTO Records,<br/>@Valid, ProblemDetail y variables de entorno"]:::r4
+
+    T["5. Tendencias"]:::r5
+    T1["Java 21, Records, Hilos Virtuales,<br/>Actuator (/actuator/health), OpenAPI y Docker"]:::r5
+
+    SB -->|"arranca con"| M
+    M -->|"activa"| M1
+    SB -->|"procesa peticiones en"| A
+    A -->|"recorre"| A1
+    SB -->|"se parametriza con"| C
+    C -->|"separa entornos mediante"| C1
+    SB -->|"se protege con"| B
+    B -->|"aplica"| B1
+    SB -->|"evoluciona hacia"| T
+    T -->|"incorpora"| T1

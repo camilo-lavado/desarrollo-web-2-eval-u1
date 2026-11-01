@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Glosario técnico — Conceptos clave">
+  <section class="nivel">
+    <div class="wrap">
+      <header class="nivel-header">
+        <span class="num">Glosario</span>
+        <div>
+          <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 4px;">
+            Glosario de términos clave
+          </h1>
+          <p style="margin: 0; color: var(--muted);">
+            Diez conceptos fundamentales de Spring Boot explicados en lenguaje directo con su ejemplo real en el proyecto.
+          </p>
+        </div>
+      </header>
+
+      <div class="panel" style="margin-top: 24px;">
+        <dl class="glosario-list" style="margin: 0; display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              1. Inversión de Control (IoC)
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Principio donde el contenedor crea y entrega los objetos en lugar de crearlos manualmente con <code>new</code>; en el proyecto, entrega <code>CitaRepository</code> en el constructor de <code>CitaService</code>.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              2. Bean
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Objeto administrado, configurado y ensamblado por el contenedor de Spring; en el proyecto, <code>CitaService</code> es un bean singleton único reutilizado en cada solicitud.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              3. Starter
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Descriptor de dependencias de Maven que agrupa librerías compatibles para una tarea específica; en el proyecto, <code>spring-boot-starter-data-jpa</code> aporta Hibernate y el pool HikariCP.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              4. Auto-configuración
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Mecanismo que registra beans por defecto según las librerías detectadas en el classpath; en el proyecto, configura <code>HikariPool-1</code> al detectar el controlador de base de datos.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              5. DispatcherServlet
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Servlet central (Front Controller) que recibe todas las peticiones HTTP y las despacha al controlador correspondiente; en el proyecto, recibe <code>POST /api/v1/citas</code> y localiza <code>CitaController.agendar()</code>.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              6. DTO (Data Transfer Object)
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Objeto plano para transportar datos entre capas sin exponer el modelo interno de la base de datos; en el proyecto, <code>AgendarCitaRequest</code> recibe la entrada y <code>CitaResponse</code> entrega la respuesta pública.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              7. Endpoint
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Punto de entrada accesible mediante URL y método HTTP con el que los clientes consumen un servicio; en el proyecto, <code>POST /api/v1/citas</code> permite registrar una nueva cita médica.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              8. Perfil
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Mecanismo para segregar partes de la configuración según el entorno de ejecución; en el proyecto, <code>dev</code> activa H2 en memoria y <code>prod</code> conecta a PostgreSQL con variables de entorno.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              9. ProblemDetail
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Especificación estándar (RFC 9457) para estructurar errores HTTP en formato JSON legible; en el proyecto, <code>GlobalExceptionHandler</code> lo genera con status 400, 404, 409 o 422.
+            </dd>
+          </div>
+
+          <div>
+            <dt style="font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px;">
+              10. Record
+            </dt>
+            <dd style="margin: 0; line-height: 1.6; max-width: 70ch;">
+              Tipo especial de clase inmutable en Java diseñado para modelar portadores de datos sin código repetitivo; en el proyecto, <code>CitaResponse</code> define los seis campos inmutables de confirmación.
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <nav class="nivel-nav" style="margin-top: 24px;" aria-label="Navegación complementaria">
+        <a href="/" class="btn sec">← Volver al Inicio</a>
+        <a href="/fuentes" class="btn">Ir a Bibliografía →</a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,13 @@
+-- SQL generado por Hibernate para la comprobación RN-04 (existsByMedicoIdAndFechaHoraAndEstado)
+-- Extraído de arranque-completo.log (líneas 1500-1509), ejecución real del 2026-11-01
+
+    select
+        c1_0.id 
+    from
+        citas c1_0 
+    where
+        c1_0.medico_id=? 
+        and c1_0.fecha_hora=? 
+        and c1_0.estado=? 
+    fetch
+        first ? rows only

@@ -1,0 +1,32 @@
+flowchart TB
+    classDef cl fill:#FFFFFF,color:#16302B,stroke:#5B6B7A,stroke-width:3px
+    classDef ds fill:#FFFFFF,color:#16302B,stroke:#D99A00,stroke-width:3px
+    classDef co fill:#FFFFFF,color:#16302B,stroke:#2F6BDB,stroke-width:3px
+    classDef se fill:#FFFFFF,color:#16302B,stroke:#1F9D6B,stroke-width:3px
+    classDef re fill:#FFFFFF,color:#16302B,stroke:#E4572E,stroke-width:3px
+    classDef pn fill:#F2F5F3,color:#16302B,stroke:#0B6E5F,stroke-width:2px
+
+    CL["1. CLIENTE / USUARIO<br/>Navegador o Postman<br/>envía POST /api/v1/citas"]:::cl
+    DS["2. DISPATCHERSERVLET<br/>Recepcionista en Tomcat 11:<br/>HandlerMapping, HandlerAdapter, Jackson"]:::ds
+    CO["3. CAPA CONTROLLER<br/>CitaController (@RestController)<br/>recibe DTO con @Valid y delega"]:::co
+    SE["4. CAPA SERVICE<br/>CitaService (@Service)<br/>reglas de negocio y @Transactional"]:::se
+    RE["5. REPOSITORY Y BASE DE DATOS<br/>CitaRepository (JpaRepository) + Cita (@Entity)<br/>Hibernate + HikariCP + SQL"]:::re
+    ER["GlobalExceptionHandler<br/>(@RestControllerAdvice)<br/>ProblemDetail: 400, 404, 409, 422"]:::ds
+
+    CL -->|"1. petición HTTP JSON"| DS
+    DS -->|"2. busca handler y valida DTO"| CO
+    CO -->|"3. llama agendar(req)"| SE
+    SE -->|"4. consulta y guarda"| RE
+    RE -.->|"5. entidad Cita persistida"| SE
+    SE -.->|"6. transforma Cita a CitaResponse"| CO
+    CO -.->|"7. ResponseEntity 201 + Location"| DS
+    DS -.->|"8. serializa JSON y responde"| CL
+    SE -.->|"excepción de dominio"| ER
+    ER -.->|"ProblemDetail RFC 9457"| CL
+
+    PA["Panel A · MOTOR DE SPRING BOOT<br/>IoC/DI · @SpringBootApplication · auto-configuración · Tomcat 11"]:::pn
+    PB["Panel B · CONFIGURACIÓN<br/>pom.xml (starters) · application.properties / .yml · perfiles dev y prod"]:::pn
+    PC["Panel C · BUENAS PRÁCTICAS Y TENDENCIAS<br/>paquetes · DTO Records · ProblemDetail · Java 21 · Hilos Virtuales · Actuator · Docker"]:::pn
+    DS --- PA
+    CO --- PB
+    RE --- PC

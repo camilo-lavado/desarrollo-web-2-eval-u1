@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q2-1",
+    "enunciado": "¿Cuál es la responsabilidad exacta del DispatcherServlet cuando llega una petición HTTP a la clínica?",
+    "opciones": [
+      "Conectarse directamente con HikariCP para comprobar si el médico tiene bloques disponibles antes de crear el controlador.",
+      "Actuar como front controller: recibir la petición, consultar el HandlerMapping y coordinar los componentes que convierten datos, invocan al controlador y manejan errores.",
+      "Escalar las tablas de la base de datos y compilar las plantillas HTML en cada petición recibida."
+    ],
+    "correcta": 1,
+    "explicacion": "En Spring MVC, el DispatcherServlet implementa el patrón front controller: provee un punto de entrada y un algoritmo compartido mientras delega el mapeo, la conversión de mensajes y la ejecución en componentes configurables.",
+    "fuente": "F03"
+  },
+  {
+    "id": "q2-2",
+    "enunciado": "¿Qué diferencia técnica existe entre un método en un @Controller tradicional y uno en un @RestController?",
+    "opciones": [
+      "El @Controller solo acepta peticiones GET, mientras que @RestController acepta POST, PUT y DELETE.",
+      "El @RestController reemplaza a la capa @Service y permite escribir las consultas SQL dentro del método.",
+      "En @Controller el String devuelto suele resolverse como nombre de vista mediante un ViewResolver; en @RestController el retorno se serializa directo al cuerpo HTTP mediante un HttpMessageConverter."
+    ],
+    "correcta": 2,
+    "explicacion": "Con @RestController (que incluye @ResponseBody), Spring utiliza un HttpMessageConverter como Jackson para escribir el objeto o ResponseEntity en el cuerpo de la respuesta HTTP en lugar de buscar una plantilla con un ViewResolver.",
+    "fuente": "F22"
+  },
+  {
+    "id": "q2-3",
+    "enunciado": "¿En qué momento construye Spring MVC el mapa que asocia rutas como POST /api/v1/citas con el método CitaController#agendar?",
+    "opciones": [
+      "Una sola vez durante el arranque de la aplicación; luego en cada petición el DispatcherServlet solo consulta ese mapa en memoria.",
+      "En cada petición HTTP, escaneando todos los archivos .class del disco desde cero.",
+      "Únicamente cuando falla una validación @Valid en la base de datos."
+    ],
+    "correcta": 0,
+    "explicacion": "El RequestMappingHandlerMapping inspecciona los beans controladores al iniciar el contexto; durante el procesamiento de cada petición el DispatcherServlet simplemente consulta esa estructura ya preparada.",
+    "fuente": "F21"
+  }
+]

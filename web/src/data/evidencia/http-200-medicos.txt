@@ -1,0 +1,8 @@
+$ curl -i -X GET http://localhost:8080/api/v1/medicos
+
+HTTP/1.1 200 
+Content-Type: application/json
+Content-Length: 211
+Date: Sun, 01 Nov 2026 18:18:42 GMT
+
+[{"id":1,"nombre":"Dra. Fernanda Rojas","especialidad":"Medicina General"},{"id":2,"nombre":"Dr. Ignacio Torres","especialidad":"Pediatría"},{"id":3,"nombre":"Dra. Carla Muñoz","especialidad":"Dermatología"}]

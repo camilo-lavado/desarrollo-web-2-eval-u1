@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FichaTecnica from '../components/FichaTecnica.astro';
+import Figura from '../components/Figura.astro';
+import MapaGlobal from '../components/MapaGlobal';
+import fuentesAll from '../data/fuentes.json';
+import d00Raw from '../../diagrams/D00-mapa-conceptual-global.mmd?raw';
+
+const idsCierre = ['F14', 'F15', 'F16', 'F20', 'F25', 'F27'];
+const fuentesCierre = fuentesAll.filter((f) => idsCierre.includes(f.id));
+---
+
+<BaseLayout title="Conclusiones — Aprendizajes principales y mapa conceptual">
+  <section class="nivel">
+    <div class="wrap">
+      <header class="nivel-header">
+        <span class="num">Conclusiones</span>
+        <div>
+          <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 4px;">
+            Conclusiones: aprendizajes principales y mapa conceptual
+          </h1>
+          <span class="tag">Fase 3 (Organizador gráfico) y Fase 4 (Reflexión personal)</span>
+        </div>
+      </header>
+
+      <p>
+        Un nodo central, cinco ramas con verbo explícito en cada arista y trece conceptos conectados al caso <strong>Reserva de Horas Médicas</strong>. Haz clic en cualquier rama del mapa para repasar su tema.
+      </p>
+
+      <!-- Mapa global interactivo SVG -->
+      <MapaGlobal client:load />
+
+      <!-- Figura 10: versión Mermaid pre-renderizada a SVG de D00 con código fuente .mmd desplegable -->
+      <Figura
+        numero={10}
+        titulo="Mapa conceptual global de Spring Boot (versión exportable Mermaid con verbos en cada arista)"
+        lectura="1) Del nodo central Spring Boot 4.1.2 parten cinco ramas con verbo explícito; 2) invierte el control con el contenedor IoC/DI; 3) configura por defecto mediante starters y @ConditionalOn...; 4) organiza peticiones en capas MVC gobernadas por el DispatcherServlet; 5) se adapta al entorno con perfiles dev/prod; 6) evoluciona hacia Java 21, Records, Hilos Virtuales y Actuator."
+        fuente="Elaboración propia a partir de los seis temas del proyecto Reserva de Horas Médicas (VMware/Broadcom, s. f.-a, s. f.-h; Spring Boot Team, 2025a)."
+        alt="Mapa conceptual en Mermaid con un nodo central Spring Boot y cinco ramas principales con verbos en sus conectores."
+        svgSrc="/diagramas/D00.svg"
+        mermaidCode={d00Raw}
+        mostrarLeyendaCapas={false}
+      />
+
+      <!-- Síntesis técnica de interconexión (Fase 3) y Reflexión final (Fase 4) -->
+      <FichaTecnica
+        titulo="Ficha técnica · Síntesis de interconexión arquitectónica y Reflexión final"
+        abiertaPorDefecto={true}
+        fuentes={fuentesCierre}
+      >
+        <h3>Cómo se conectan las cinco ramas del mapa en una sola operación real</h3>
+        <p>
+          Cuando Ana confirma su hora médica, las cinco ramas del mapa actúan como un único mecanismo coordinado:
+          los <strong><em>starters</em> de Maven</strong> declarados en el <code>pom.xml</code> (Tema 3) activan la
+          <strong>autoconfiguración condicional</strong> (<code>@ConditionalOnClass</code>, <code>@ConditionalOnMissingBean</code>) y
+          entregan al <strong>contenedor IoC (<code>ApplicationContext</code>)</strong> (Tema 1) todos los <em>beans</em>
+          de infraestructura y las clases propias ensambladas mediante <strong>inyección por constructor</strong>.
+          Al llegar el paquete HTTP, el <strong><code>DispatcherServlet</code></strong> (Tema 2) enruta la llamada a través de las
+          <strong>capas</strong> (<code>@RestController</code> → <code>@Service</code> → <code>@Repository</code> → <code>@Entity</code>)
+          (Tema 4), protegiendo los datos internos de los pacientes mediante <strong><em>records</em> DTO y <code>ProblemDetail</code></strong>
+          (Tema 5) y ejecutándose sobre <strong>Java 21</strong> con monitoreo listo para producción en <code>/actuator/health</code> (Tema 6).
+        </p>
+
+        <h3>Aprendizajes principales</h3>
+        <ul style="margin: 0 0 20px; padding-left: 20px; line-height: 1.65; max-width: 75ch;">
+          <li style="margin-bottom: 10px;">
+            <strong>La autoconfiguración es condicional y determinista:</strong> Spring Boot no recurre a generación mágica de código, sino que evalúa en tiempo de arranque anotaciones <code>@Conditional</code> sobre las clases presentes en el <em>classpath</em> para registrar <em>beans</em> solo cuando la aplicación no ha provisto una definición propia.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>El ciclo de vida distingue arranque de atención HTTP:</strong> Los componentes de infraestructura (conexiones de <code>HikariPool-1</code>, metadatos de rutas y <em>beans</em> singleton) se inicializan una única vez al encender el servicio (3,661 s en dev), permitiendo que cada solicitud HTTP posterior reutilice esas estructuras en memoria en milisegundos sin recrear el grafo de objetos.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>El DispatcherServlet centraliza el contrato web:</strong> Siguiendo el patrón <em>Front Controller</em>, el servlet central intercepta las peticiones, delega la deserialización a Jackson y la validación sintáctica a Jakarta Bean Validation (<code>@Valid</code>), aislando la capa de servicio de los detalles del protocolo de transporte.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>La separación en capas protege la integridad y el modelo de datos:</strong> La lógica de negocio y las transacciones residen en <code>@Service</code> bajo <code>@Transactional</code>, mientras que los datos quedan resguardados mediante <code>records</code> DTO inmutables que previenen fugas de información privada y excepciones por acceso perezoso fuera de sesión (<code>LazyInitializationException</code>).
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>Los perfiles permiten un único artefacto portable entre entornos:</strong> La parametrización declarativa en <code>application-dev.properties</code> (base de datos H2 en memoria) y <code>application-prod.properties</code> (PostgreSQL con credenciales vía variables de entorno) posibilita desplegar el mismo binario compilado sin modificar el código fuente.
+          </li>
+        </ul>
+
+        <h3>Reflexión final (Fase 4)</h3>
+        <div class="reflexion" style="max-width: 70ch; line-height: 1.65;">
+          <p>
+            Antes de este trabajo usaba Spring Boot con plantillas y fragmentos de código ya hechos, y avanzaba por ensayo y error. Funcionaba, pero yo no entendía bien qué pasaba por dentro.
+          </p>
+          <p>
+            Al estudiarlo vi la diferencia entre programar solo con Java y hacerlo con Spring Boot. Con Java solo tendría que crear a mano el servidor web, la conexión a la base de datos, la conversión a JSON y el manejo de transacciones. Spring Boot lo resuelve con la auto-configuración: revisa las librerías del <em>classpath</em> y, mediante condiciones como <code>@ConditionalOnClass</code> y <code>@ConditionalOnMissingBean</code>, crea los <em>beans</em> que hacen falta. El contenedor (<code>ApplicationContext</code>) los instancia al arrancar y los entrega por el constructor, que es la inversión de control. El informe de condiciones que generé con <code>--debug</code> me lo mostró: Spring configuró HikariCP porque encontró la clase <code>HikariDataSource</code> en el <em>classpath</em>. Eso no resuelve todo: en mi proyecto, la regla que impide dos citas en el mismo bloque horario solo se revisa en el servicio y no está protegida en la base de datos.
+          </p>
+          <p>
+            Entender el recorrido de una petición (Tomcat, <code>DispatcherServlet</code>, controlador, servicio y repositorio) me sirvió para saber dónde buscar cuando algo falla. Un 400 viene de <code>@Valid</code> antes de llegar al servicio; un 404, un 409 o un 422 vienen de las reglas del servicio. Si no se entiende cómo funciona, el sistema se vuelve una caja negra difícil de mantener a largo plazo.
+          </p>
+          <p>
+            El <code>LazyInitializationException</code> me pareció vital porque falló en mi propio código. <code>Cita</code> tiene relaciones <code>@ManyToOne</code> en modo <code>LAZY</code> y configuré <code>open-in-view=false</code>, así que Hibernate carga el paciente y el médico solo cuando se piden y mientras la sesión sigue abierta. Al armar la respuesta fuera de la transacción, la sesión ya estaba cerrada y la consulta falló. Me mostró que no basta con que algo compile y funcione en una prueba: hay que entender cuándo vive la sesión de Hibernate para decidir cómo traer los datos. Lo resolví con una consulta <code>JOIN FETCH</code>, que trae la cita con su paciente y su médico de una vez. Es también una razón más para no devolver la entidad directamente y usar un <em>record</em> DTO, como <code>CitaResponse</code>.
+          </p>
+          <p>
+            Otro hallazgo fue la variable <code>{"${DB_PASSWORD}"}</code>. Si falta, Spring no avisa: el texto queda literal hasta que el controlador de PostgreSQL lo rechaza. Sin entender cómo se resuelven los <em>placeholders</em> y los perfiles, ese error sería muy difícil de rastrear.
+          </p>
+          <p>
+            El código de partida que me dio un asistente de IA tenía tres patrones de Spring Boot 3: el <em>starter</em> <code>spring-boot-starter-web</code> en lugar de <code>webmvc</code>, la importación antigua de <code>@WebMvcTest</code> y la falta del módulo <code>spring-boot-h2console</code>. Lo detecté al compilar y comparar con la documentación. Hoy la IA genera gran parte del código, así que para alguien de último año importa más entender las capas y las configuraciones que memorizar sintaxis: un buen desarrollador tiene que saber corregir lo que ella produce.
+          </p>
+          <p>
+            De aquí en adelante voy a tratar de entender el concepto detrás de cada tecnología que use. Este trabajo dejó una pregunta sin responder: por qué se elige Spring Boot frente a otras alternativas. Es lo que quiero investigar después.
+          </p>
+        </div>
+      </FichaTecnica>
+
+      <nav class="nivel-nav" aria-label="Navegación de cierre">
+        <a href="/nivel/6" class="btn sec">← Volver al Tema 6</a>
+        <a href="/fuentes" class="btn">Ver Fuentes (APA 7) →</a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,8 @@
+$ curl -i -X POST http://localhost:8080/api/v1/citas -H 'Content-Type: application/json' -d '{"pacienteId":1,"medicoId":1,"fechaHora":"2026-11-08T10:00:00","motivo":"Control"}'
+
+HTTP/1.1 422 
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sun, 01 Nov 2026 18:18:42 GMT
+
+{"detail":"Solo se atiende de lunes a viernes","instance":"/api/v1/citas","status":422,"title":"Fuera de las reglas de atención"}

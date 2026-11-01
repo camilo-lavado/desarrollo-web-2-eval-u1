@@ -1,0 +1,35 @@
+sequenceDiagram
+    autonumber
+    actor U as Cliente
+    participant D as DispatcherServlet (Tomcat)
+    participant C as CitaController
+    participant S as CitaService
+    participant R as CitaRepository
+    participant B as Base de Datos
+
+    U->>D: "POST /api/v1/citas (JSON)"
+    D->>D: "HandlerMapping ubica CitaController#agendar"
+    D->>C: "HandlerAdapter convierte JSON a AgendarCitaRequest (@Valid)"
+    alt "Formato inválido (ej. fecha pasada)"
+        D-->>U: "400 Bad Request (ProblemDetail)"
+    else "DTO con formato válido"
+        C->>S: "agendar(request)"
+        S->>R: "findById(pacienteId) y findById(medicoId)"
+        alt "Paciente o médico no existe"
+            S-->>U: "404 Not Found (ProblemDetail)"
+        else "Ambos existen y horario es hábil"
+            S->>R: "existsByMedicoIdAndFechaHoraAndEstado(...)"
+            R->>B: "SELECT"
+            B-->>R: "resultado booleano"
+            alt "Bloque horario ocupado"
+                S-->>U: "409 Conflict (ProblemDetail)"
+            else "Bloque libre"
+                S->>R: "save(cita)"
+                R->>B: "INSERT INTO citas"
+                B-->>R: "id generado"
+                S-->>C: "Cita guardada"
+                C-->>D: "ResponseEntity 201 + CitaResponse.desde(cita)"
+                D-->>U: "201 Created + Location + JSON"
+            end
+        end
+    end

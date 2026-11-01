@@ -1,0 +1,9 @@
+-- SQL generado por Hibernate al agendar una cita (POST /api/v1/citas -> INSERT INTO citas)
+-- Extraído de arranque-completo.log (líneas 1526-1531), ejecución real del 2026-11-01
+
+    insert 
+    into
+        citas
+        (estado, fecha_hora, medico_id, motivo, paciente_id, id) 
+    values
+        (?, ?, ?, ?, ?, default)

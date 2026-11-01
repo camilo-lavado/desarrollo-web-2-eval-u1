@@ -1,0 +1,14 @@
+GET  /actuator/conditions  ->  org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle
+GET  /actuator  ->  org.springframework.boot.webmvc.actuate.endpoint.web.WebMvcEndpointHandlerMapping.WebMvcLinksHandler#links
+GET  /actuator/info  ->  org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle
+GET  /actuator/health/**  ->  org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle
+GET  /actuator/mappings  ->  org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle
+GET  /actuator/health  ->  org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping.OperationHandler#handle
+*  /error  ->  org.springframework.boot.webmvc.autoconfigure.error.BasicErrorController#error
+POST  /api/v1/citas  ->  cl.ipss.reservamedica.controller.CitaController#agendar
+GET  /api/v1/medicos  ->  cl.ipss.reservamedica.controller.MedicoController#listar
+GET  /api/v1/citas/{id}  ->  cl.ipss.reservamedica.controller.CitaController#obtener
+GET  /medicos  ->  cl.ipss.reservamedica.controller.MedicoVistaController#verMedicos
+*  /error  ->  org.springframework.boot.webmvc.autoconfigure.error.BasicErrorController#errorHtml
+/webjars/**
+/**

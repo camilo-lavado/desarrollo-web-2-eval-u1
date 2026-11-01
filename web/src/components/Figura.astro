@@ -1,0 +1,77 @@
+---
+export interface Props {
+  numero: string | number;
+  titulo: string;
+  lectura: string;
+  fuente: string;
+  alt: string;
+  svgSrc?: string;
+  mermaidCode?: string;
+  mostrarLeyendaCapas?: boolean;
+}
+
+const {
+  numero,
+  titulo,
+  lectura,
+  fuente,
+  alt,
+  svgSrc,
+  mermaidCode,
+  mostrarLeyendaCapas = true,
+} = Astro.props;
+---
+
+<figure class="figura" aria-label={alt}>
+  <div class="figura-header">
+    <span class="figura-num">Figura {numero}</span>
+    <h3 class="figura-title">{titulo}</h3>
+  </div>
+
+  <div class="figura-canvas" role="img" aria-label={alt}>
+    {
+      svgSrc ? (
+        <img
+          src={svgSrc}
+          alt={alt}
+          class="figura-img"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <slot />
+      )
+    }
+  </div>
+
+  {
+    mermaidCode && (
+      <details style="margin-top: 10px; font-size: 0.82rem;">
+        <summary style="cursor: pointer; color: var(--muted); font-weight: 500;">
+          Ver código fuente Mermaid (.mmd) de respaldo
+        </summary>
+        <pre style="margin-top: 6px;">{mermaidCode.trim()}</pre>
+      </details>
+    )
+  }
+
+  {
+    mostrarLeyendaCapas && (
+      <div class="figura-leyenda" aria-label="Leyenda de colores por capa">
+        <span><i style="background: var(--cliente)"></i> Cliente</span>
+        <span><i style="background: var(--dispatcher)"></i> DispatcherServlet</span>
+        <span><i style="background: var(--controller)"></i> Controlador</span>
+        <span><i style="background: var(--service)"></i> Servicio</span>
+        <span><i style="background: var(--repo)"></i> Repositorio</span>
+        <span><i style="background: var(--bd)"></i> Base de datos</span>
+      </div>
+    )
+  }
+
+  <figcaption class="figura-caption">
+    <strong>Cómo leerlo:</strong> {lectura}
+    <div class="figura-fuente">
+      <strong>Fuente:</strong> {fuente}
+    </div>
+  </figcaption>
+</figure>

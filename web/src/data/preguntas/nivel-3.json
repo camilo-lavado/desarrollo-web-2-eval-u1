@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q3-1",
+    "enunciado": "¿Por qué no es necesario escribir la etiqueta <version> en dependencias como spring-boot-starter-webmvc o spring-boot-starter-data-jpa dentro del pom.xml?",
+    "opciones": [
+      "Porque Maven descarga siempre la última versión experimental publicada en internet sin revisar compatibilidad.",
+      "Porque las versiones se definen dentro de la clase @RestController en tiempo de ejecución.",
+      "Porque el proyecto hereda de spring-boot-starter-parent, que incluye un Bill of Materials (BOM) con versiones ya probadas y compatibles entre sí."
+    ],
+    "correcta": 2,
+    "explicacion": "El bloque <parent> con spring-boot-starter-parent gestiona centralizadamente las versiones compatibles de las librerías del ecosistema mediante su gestión de dependencias (BOM).",
+    "fuente": "F15"
+  },
+  {
+    "id": "q3-2",
+    "enunciado": "¿Qué ocurre si en el perfil de producción (application-prod.properties) se deja spring.jpa.hibernate.ddl-auto=create?",
+    "opciones": [
+      "Hibernate recrea las tablas desde cero al iniciar la aplicación, destruyendo los datos existentes en la base de datos.",
+      "Hibernate solo valida que las tablas existan y conserva todas las citas médicas intactas.",
+      "Spring Boot ignora el archivo y cambia automáticamente a la base en memoria H2."
+    ],
+    "correcta": 0,
+    "explicacion": "El valor create ordena recrear el esquema DDL al arrancar; en producción debe usarse validate (o none junto con migraciones controladas) para no perder información.",
+    "fuente": "F19"
+  },
+  {
+    "id": "q3-3",
+    "enunciado": "¿Cuál es el cambio de nombre introducido en Spring Boot 4.0 para el starter de aplicaciones web MVC con Servlets?",
+    "opciones": [
+      "Pasó de spring-boot-starter-web a spring-boot-starter-jakarta-ee.",
+      "Pasó de spring-boot-starter-web a spring-boot-starter-webmvc.",
+      "Se eliminó el soporte para Tomcat embebido y ahora exige un archivo web.xml externo."
+    ],
+    "correcta": 1,
+    "explicacion": "La guía de migración de Spring Boot 4.0 documenta la modularización de starters, donde spring-boot-starter-webmvc reemplaza al histórico spring-boot-starter-web.",
+    "fuente": "F27"
+  }
+]

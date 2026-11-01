@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroPipe from '../components/HeroPipe';
+import TurnosMap from '../components/TurnosMap';
+import FichaTecnica from '../components/FichaTecnica.astro';
+---
+
+<BaseLayout title="Inicio · La petición de Ana">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-split">
+        <div class="hero-copy">
+          <div class="row" style="margin: 0 0 12px;">
+            <span class="tag">
+              Spring Boot 4.1.2 · Java 21 · Arquitectura en capas
+            </span>
+            <span class="tag">6 temas en 3 fases</span>
+          </div>
+
+          <h1 class="hero-title">Una hora médica cruza cinco capas antes de ser una cita</h1>
+          <p class="lead">
+            Ana quiere agendar una hora. Llevamos su petición desde el clic hasta la base de datos y de vuelta, explicando por qué cada pieza existe con código y evidencia real ejecutada.
+          </p>
+
+          <div class="row" style="margin-top: 20px;">
+            <a class="btn" href="/nivel/1">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg>
+              Comenzar en el Tema 1
+            </a>
+            <a class="btn sec" href="/nivel/2">Ir al Simulador HTTP (Tema 2)</a>
+            <a class="btn sec" href="/cierre">Conclusiones y mapa conceptual</a>
+          </div>
+
+          <div class="meta" aria-label="Identificación de la entrega">
+            <span><strong>Estudiante:</strong> Camilo Lavado</span>
+            <span><strong>Asignatura:</strong> Desarrollo de Software Web II · Evaluación Unidad 1</span>
+            <span><strong>Institución:</strong> IP San Sebastián</span>
+            <span><strong>Caso:</strong> Reserva de Horas Médicas (<code>cl.ipss.reservamedica</code>)</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Resumen del caso">
+          <div class="panel" style="margin: 0;">
+            <h3 style="margin-bottom: 8px;">Reserva de Horas Médicas</h3>
+            <p style="color: var(--muted); margin-bottom: 12px;">
+              Recorrido verificado extremo a extremo: <code>POST /api/v1/citas</code> → <code>DispatcherServlet</code> → <code>CitaController</code> → <code>CitaService</code> → <code>CitaRepository</code> → base de datos.
+            </p>
+            <p style="margin: 0; font-size: 0.92rem; color: var(--muted);">
+              Backend en Spring Boot 4.1.2 sobre Java 21, con servidor Tomcat embebido y pruebas unitarias con JUnit 5.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Introducción e Índice que solicita la rúbrica -->
+      <section class="panel intro-panel" style="margin-top: 32px;" aria-label="Introducción al informe">
+        <h2 style="font-size: 1.35rem; margin-top: 0; margin-bottom: 10px;">Introducción</h2>
+        <p style="margin-bottom: 12px; line-height: 1.65; max-width: 75ch;">
+          Este sitio presenta el informe técnico y demostrativo de la Evaluación Unidad 1 de Desarrollo de Software Web II, enfocado en explicar cómo funciona Spring Boot por dentro frente al mito de la «magia». A través del caso real <strong>Reserva de Horas Médicas</strong> (paquete <code>cl.ipss.reservamedica</code>), se desglosa el recorrido de una petición HTTP desde que el usuario solicita una cita hasta su persistencia en la base de datos relacional. El objetivo general es evidenciar la arquitectura interna del framework —inversión de control, autoconfiguración, despacho web, manejo de transacciones y perfiles— mediante código compilado y salidas reales capturadas. Se recomienda navegar el contenido en el orden secuencial de sus fases o acudir directamente a las fichas técnicas para examinar los respaldos documentales.
+        </p>
+        <div class="como-leer" style="margin: 14px 0 0; padding: 12px 16px; border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: var(--r-card); background: var(--accent-soft); max-width: 75ch;">
+          <strong style="display: block; margin-bottom: 4px;">Cómo está organizado el sitio</strong>
+          La pauta pide cuatro <strong>fases</strong>. Las fases 1, 2 y 3 se explican en seis <strong>temas</strong>, dos por fase: la Fase 1 son los temas 1 y 2, la Fase 2 los temas 3 y 4, y la Fase 3 los temas 5 y 6. La Fase 4 (conclusiones y reflexión final) está en <a href="/cierre">Conclusiones</a>.
+        </div>
+        <div class="indice-rapido" style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <strong style="display: block; margin-bottom: 8px; font-size: 0.95rem;">Índice del informe:</strong>
+          <div class="row" style="gap: 8px; flex-wrap: wrap;">
+            <a class="btn sec" href="/nivel/1">Fase 1 · Arquitectura y flujo HTTP (Temas 1 y 2)</a>
+            <a class="btn sec" href="/nivel/3">Fase 2 · Configuración y código en capas (Temas 3 y 4)</a>
+            <a class="btn sec" href="/nivel/5">Fase 3 · Buenas prácticas y radar 2026 (Temas 5 y 6)</a>
+            <a class="btn sec" href="/cierre">Conclusiones · Organizador gráfico y aprendizajes</a>
+            <a class="btn sec" href="/fuentes">Bibliografía · Fuentes oficiales APA 7</a>
+          </div>
+        </div>
+      </section>
+
+      <div style="margin-top: 36px;">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">Recorrido interactivo en vivo</span>
+            <h2 style="margin: 0;">Tubería de 5 paradas: de la solicitud HTTP a la fila en CITAS</h2>
+          </div>
+          <span class="tag">Animación de ida (201) y desvío de error (400 / 404 / 409 / 422)</span>
+        </div>
+        <HeroPipe client:load />
+      </div>
+
+      <div style="margin-top: 48px;">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">Ruta de aprendizaje</span>
+            <h2 style="margin: 0;">Elige un tema (6 temas conectados)</h2>
+          </div>
+          <span class="tag">6 temas en 3 fases</span>
+        </div>
+        <p style="color: var(--muted);">
+          Cada tema incluye explicación conceptual (<strong>Aprende</strong>), simulador o laboratorio práctico y su carpeta de respaldo documental (<strong>Ficha técnica</strong>).
+        </p>
+
+        <TurnosMap client:load />
+      </div>
+
+      <div class="zigzag-section" style="margin-top: 56px;">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">Estructura de dominio y evaluación</span>
+            <h2 style="margin: 0;">Cómo se conecta cada bloque con los criterios de la pauta</h2>
+          </div>
+        </div>
+
+        <div class="zigzag-row">
+          <div class="panel">
+            <span class="kicker">Criterio 1 · Comprensión de la arquitectura (20 pts)</span>
+            <h3>Temas 1 y 2: El motor de auto-configuración y el viaje de la petición</h3>
+            <p>
+              Exploramos qué ocurre al ejecutar <code>SpringApplication.run(...)</code> con el informe real de condiciones (<code>condiciones.txt</code>) y seguimos paso a paso la petición de Ana a través del <code>DispatcherServlet</code> con respuestas HTTP reales capturadas del backend.
+            </p>
+            <div class="row">
+              <a class="btn" href="/nivel/1">Explorar Tema 1</a>
+              <a class="btn sec" href="/nivel/2">Simulador HTTP (Tema 2)</a>
+            </div>
+          </div>
+          <div class="panel accent-card-purple">
+            <span class="tag" style="margin-bottom: 8px; display: inline-block;">Evidencia verificada</span>
+            <h4>Salidas reales incluidas en Criterio 1</h4>
+            <ul style="margin-bottom: 0;">
+              <li><code>arranque.log</code>: inicio de Tomcat 11.0.27 y HikariPool-1 en 3,661 s.</li>
+              <li><code>condiciones.txt</code>: evaluación de <code>@ConditionalOnClass</code> y <code>@ConditionalOnMissingBean</code>.</li>
+              <li><code>http-201/400/404/409/422.txt</code>: trazas reales con cabeceras y cuerpo RFC 9457.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="zigzag-row reverse">
+          <div class="panel">
+            <span class="kicker">Criterio 2 · Aplicación práctica (30 pts)</span>
+            <h3>Temas 3 y 4: Configuración por perfiles, pom.xml y código real en capas</h3>
+            <p>
+              Comparamos <code>application-dev.properties</code> (H2 en memoria) frente a <code>application-prod.properties</code> (PostgreSQL con variables <code>$&#123;DB_URL&#125;</code>), inspeccionamos las 5 clases reales del paquete <code>cl.ipss.reservamedica</code> y analizamos el SQL generado por Hibernate 7.4.
+            </p>
+            <div class="row">
+              <a class="btn" href="/nivel/3">Laboratorio de Perfiles (Tema 3)</a>
+              <a class="btn sec" href="/nivel/4">Código en capas (Tema 4)</a>
+            </div>
+          </div>
+          <div class="panel accent-card-blue">
+            <span class="tag" style="margin-bottom: 8px; display: inline-block;">Código compilado y probado</span>
+            <h4>Código fuente del caso clínico</h4>
+            <ul style="margin-bottom: 0;">
+              <li><code>Cita.java</code> (<code>@Entity</code> con relaciones <code>FetchType.LAZY</code>).</li>
+              <li><code>CitaRepository.java</code> (<code>existsBy...</code> y <code>JOIN FETCH</code>).</li>
+              <li><code>CitaService.java</code> y <code>CitaController.java</code> con inyección por constructor.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="zigzag-row">
+          <div class="panel">
+            <span class="kicker">Criterio 3 · Análisis y argumentación (30 pts)</span>
+            <h3>Temas 5 y 6: Buenas prácticas, migración Boot 3 → 4, Java 21 y Actuator</h3>
+            <p>
+              Demostramos por qué nunca se expone la <code>@Entity</code> sin un <code>record</code> DTO, cómo <code>GlobalExceptionHandler</code> centraliza los errores con <code>ProblemDetail</code> y qué cambia realmente en Spring Boot 4.1.2 (<code>starter-webmvc</code>, Jackson 3, <code>@MockitoBean</code>, <code>spring-boot-h2console</code>).
+            </p>
+            <div class="row">
+              <a class="btn" href="/nivel/5">Buenas prácticas (Tema 5)</a>
+              <a class="btn sec" href="/nivel/6">Radar 2026 (Tema 6)</a>
+            </div>
+          </div>
+          <div class="panel accent-card-orange">
+            <span class="tag" style="margin-bottom: 8px; display: inline-block;">Observabilidad y síntesis</span>
+            <h4>Monitoreo real y cierre conceptual</h4>
+            <ul style="margin-bottom: 0;">
+              <li><code>actuator-health.json</code>: estado <code>UP</code> de H2, sondas liveness/readiness y espacio en disco.</li>
+              <li>Mapa conceptual interactivo <code>D00</code> en <a href="/cierre">/cierre</a> con 5 ramas y verbos en cada arista.</li>
+              <li>Bibliografía completa en APA 7 en <a href="/fuentes">/fuentes</a>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <FichaTecnica titulo="Ficha técnica · Descripción del caso y alcance">
+        <p>
+          <strong>Caso clínico:</strong> Sistema de Reserva de Horas Médicas (paquete raíz <code>cl.ipss.reservamedica</code>). Una clínica ambulatoria necesita gestionar la reserva de citas entre pacientes y médicos evitando choques de horario, validando datos de entrada y separando las responsabilidades en capas.
+        </p>
+        <p>
+          <strong>Propósito del recorrido:</strong> explicar con palabras propias cómo funciona Spring Boot por dentro —desde el arranque del contenedor de inversión de control (IoC) y la auto-configuración hasta el recorrido completo de una petición HTTP por <code>DispatcherServlet</code>, <code>@RestController</code>, <code>@Service</code>, <code>@Repository</code> y la base de datos—, contrastando las diferencias relevantes entre Spring Boot 3.x y 4.x.
+        </p>
+      </FichaTecnica>
+    </div>
+  </section>
+</BaseLayout>

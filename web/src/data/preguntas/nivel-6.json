@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q6-1",
+    "enunciado": "¿Por qué los Java Records son ideales para definir DTOs (como AgendarCitaRequest y CitaResponse), pero no para entidades @Entity de JPA?",
+    "opciones": [
+      "Porque los Records solo aceptan números enteros y no permiten atributos de tipo String.",
+      "Porque Jackson no puede convertir un Record a formato JSON.",
+      "Porque los Records generan objetos inmutables (campos final y sin constructor vacío) ideales para transportar datos, mientras que JPA necesita entidades mutables y con constructor sin argumentos."
+    ],
+    "correcta": 2,
+    "explicacion": "Un Java Record es inmutable y final por diseño, lo que garantiza seguridad al transferir datos entre capas, mientras que el ciclo de vida de Hibernate/JPA requiere estado mutable y proxies.",
+    "fuente": "F28"
+  },
+  {
+    "id": "q6-2",
+    "enunciado": "¿Qué problema resuelven los Hilos Virtuales (spring.threads.virtual.enabled=true) en una aplicación web con Java 21?",
+    "opciones": [
+      "Permiten que cuando una petición se bloquea esperando entrada/salida (como una consulta a la base de datos), la JVM libere el hilo físico del sistema operativo para atender otras peticiones concurrentes.",
+      "Hacen que las consultas SQL se ejecuten sin necesidad de una base de datos.",
+      "Reemplazan al protocolo HTTP por comunicación directa con la tarjeta gráfica."
+    ],
+    "correcta": 0,
+    "explicacion": "Los hilos virtuales desacoplan la tarea lógica del hilo del sistema operativo durante bloqueos de E/S, evitando agotar los hilos de plataforma mientras se espera respuesta de la red o base de datos.",
+    "fuente": "F18"
+  },
+  {
+    "id": "q6-3",
+    "enunciado": "¿Para qué sirve el endpoint /actuator/health que provee spring-boot-starter-actuator?",
+    "opciones": [
+      "Para mostrar la lista completa de contraseñas de los pacientes registrados.",
+      "Para exponer el estado operativo de la aplicación (por ejemplo, {\"status\":\"UP\"}) y permitir que sistemas de monitoreo o contenedores verifiquen si el servicio está funcionando.",
+      "Para compilar los archivos .java cuando no existe Maven."
+    ],
+    "correcta": 1,
+    "explicacion": "Spring Boot Actuator ofrece endpoints de observabilidad y monitoreo; /actuator/health informa el estado de salud del servicio en tiempo de ejecución.",
+    "fuente": "F27"
+  }
+]

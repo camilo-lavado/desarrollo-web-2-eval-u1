@@ -1,0 +1,138 @@
+{
+  "origen": "Archivos reales de web/src/data/codigo/application.properties, application-dev.properties y application-prod.properties + web/src/data/evidencia/dependency-tree.txt",
+  "propiedades": [
+    {
+      "clave": "spring.application.name",
+      "descripcion": "Nombre lógico de la aplicación en registros y métricas (application.properties)",
+      "dev": "reserva-medica",
+      "prod": "reserva-medica"
+    },
+    {
+      "clave": "spring.profiles.active",
+      "descripcion": "Perfil activo por defecto en application.properties (conmutable por entorno)",
+      "dev": "dev",
+      "prod": "prod"
+    },
+    {
+      "clave": "spring.jpa.open-in-view",
+      "descripcion": "Desactiva OpenEntityManagerInViewInterceptor para cerrar la sesión JPA al salir de @Service (VMware/Broadcom, s. f.-u)",
+      "dev": "false",
+      "prod": "false"
+    },
+    {
+      "clave": "spring.mvc.problemdetails.enabled",
+      "descripcion": "Activa el soporte para respuestas de error RFC 9457 ProblemDetail (VMware/Broadcom, s. f.-j)",
+      "dev": "true",
+      "prod": "true"
+    },
+    {
+      "clave": "server.error.include-stacktrace",
+      "descripcion": "Impide que las trazas internas de pila Java se filtren en las respuestas HTTP de error",
+      "dev": "never",
+      "prod": "never"
+    },
+    {
+      "clave": "spring.datasource.url",
+      "descripcion": "Dirección JDBC de la base de datos administrada por HikariCP 7.0.2 (VMware/Broadcom, s. f.-u)",
+      "dev": "jdbc:h2:mem:reservamedica",
+      "prod": "${DB_URL}"
+    },
+    {
+      "clave": "spring.datasource.driver-class-name",
+      "descripcion": "Controlador JDBC del motor relacional de cada entorno (H2 2.4.240 vs PostgreSQL 42.7.14)",
+      "dev": "org.h2.Driver",
+      "prod": "org.postgresql.Driver"
+    },
+    {
+      "clave": "spring.datasource.username",
+      "descripcion": "Usuario de conexión entregado al DataSource (VMware/Broadcom, s. f.-u)",
+      "dev": "sa",
+      "prod": "${DB_USER}"
+    },
+    {
+      "clave": "spring.datasource.password",
+      "descripcion": "Contraseña de la base de datos (en prod viene de variable de entorno ${DB_PASSWORD})",
+      "dev": "(vacía)",
+      "prod": "${DB_PASSWORD}"
+    },
+    {
+      "clave": "spring.h2.console.enabled",
+      "descripcion": "Habilita la consola web /h2-console en desarrollo (módulo spring-boot-h2console:4.1.2)",
+      "dev": "true",
+      "prod": "false"
+    },
+    {
+      "clave": "spring.jpa.hibernate.ddl-auto",
+      "descripcion": "Acción de Hibernate 7.4.13.Final sobre el esquema al arrancar la aplicación",
+      "dev": "create-drop",
+      "prod": "validate"
+    },
+    {
+      "clave": "spring.jpa.show-sql",
+      "descripcion": "Muestra las sentencias SQL generadas por Hibernate en la salida estándar",
+      "dev": "true",
+      "prod": "false"
+    },
+    {
+      "clave": "management.endpoints.web.exposure.include",
+      "descripcion": "Endpoints HTTP expuestos por Spring Boot Actuator en cada perfil",
+      "dev": "health,info,mappings,conditions",
+      "prod": "health"
+    }
+  ],
+  "feedbackDdl": {
+    "create": "Peligro en producción: con create, Hibernate borra y recrea las tablas al arrancar, destruyendo todas las citas médicas registradas.",
+    "update": "Riesgoso en producción: con update, Hibernate altera el esquema automáticamente sin revisión ni control de migraciones.",
+    "validate": "Correcto en producción: con validate, Hibernate solo comprueba que las tablas coincidan con las clases @Entity y no borra ni modifica datos."
+  },
+  "dependenciasPom": [
+    {
+      "id": "webmvc",
+      "artifactId": "spring-boot-starter-webmvc:4.1.2",
+      "scope": "compile",
+      "resuelve": "Construye la capa web y API REST bajo el patrón MVC (en Boot 3.x se llamaba spring-boot-starter-web; en Boot 4.1.2 es spring-boot-starter-webmvc) (Spring Boot Team, 2025a).",
+      "trae": "Apache Tomcat embebido 11.0.27 (tomcat-embed-core:11.0.27), Spring WebMVC y Jackson 3.1.7 en el nuevo paquete tools.jackson.core:jackson-databind:3.1.7 (junto con jackson-annotations:2.21).",
+      "activa": "DispatcherServletAutoConfiguration, RequestMappingHandlerMapping (@RestController, @PostMapping) y JacksonJsonHttpMessageConverter."
+    },
+    {
+      "id": "data-jpa",
+      "artifactId": "spring-boot-starter-data-jpa:4.1.2",
+      "scope": "compile",
+      "resuelve": "Persistencia relacional mediante repositorios declarativos y mapeo objeto-relacional (ORM) [F19, F25].",
+      "trae": "Hibernate ORM 7.4.13.Final (org.hibernate.orm:hibernate-core:7.4.13.Final), HikariCP 7.0.2 (com.zaxxer:HikariCP:7.0.2) y Spring Data JPA.",
+      "activa": "DataSourceAutoConfiguration, DataSourceConfiguration.Hikari, HibernateJpaAutoConfiguration y proxies de JpaRepository."
+    },
+    {
+      "id": "validation",
+      "artifactId": "spring-boot-starter-validation:4.1.2",
+      "scope": "compile",
+      "resuelve": "Validación declarativa de datos de entrada en los DTO Records (AgendarCitaRequest) antes de ejecutar reglas de negocio.",
+      "trae": "Hibernate Validator 9.1.5.Final (org.hibernate.validator:hibernate-validator:9.1.5.Final) y tomcat-embed-el:11.0.27.",
+      "activa": "Validador automático disparado con @Valid en los parámetros del controlador (@NotNull, @Future, @Size)."
+    },
+    {
+      "id": "h2",
+      "artifactId": "spring-boot-h2console:4.1.2 + com.h2database:h2:2.4.240",
+      "scope": "compile / runtime",
+      "resuelve": "Motor SQL en memoria para el perfil dev y consola web /h2-console (en Boot 4.1 la consola requiere el módulo separado spring-boot-h2console).",
+      "trae": "com.h2database:h2:jar:2.4.240 (runtime) y org.springframework.boot:spring-boot-h2console:jar:4.1.2 (compile).",
+      "activa": "H2ConsoleAutoConfiguration en '/h2-console' y base en memoria jdbc:h2:mem:reservamedica en el perfil dev."
+    },
+    {
+      "id": "postgresql",
+      "artifactId": "org.postgresql:postgresql:42.7.14",
+      "scope": "runtime",
+      "resuelve": "Conectividad JDBC con el servidor de base de datos relacional PostgreSQL en el perfil prod.",
+      "trae": "Controlador JDBC nativo org.postgresql:postgresql:jar:42.7.14:runtime.",
+      "activa": "Permite que HikariCP 7.0.2 abra conexiones hacia ${DB_URL} en producción (si ${DB_URL} no está definida en el entorno, el driver falla en el arranque rechazando la URL literal)."
+    },
+    {
+      "id": "actuator",
+      "artifactId": "spring-boot-starter-actuator:4.1.2",
+      "scope": "compile",
+      "resuelve": "Monitoreo operativo, sondas de salud (liveness/readiness) e inspección de rutas y condiciones.",
+      "trae": "spring-boot-starter-actuator:4.1.2 y spring-boot-starter-micrometer-metrics:4.1.2.",
+      "activa": "Endpoints /actuator/health, /actuator/info, /actuator/mappings y /actuator/conditions."
+    }
+  ]
+}

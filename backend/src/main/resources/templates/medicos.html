@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Médicos — Reserva de Horas Médicas</title>
+</head>
+<body>
+    <h1>Médicos disponibles</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="medico : ${medicos}">
+            <td th:text="${medico.nombre}">Nombre</td>
+            <td th:text="${medico.especialidad}">Especialidad</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

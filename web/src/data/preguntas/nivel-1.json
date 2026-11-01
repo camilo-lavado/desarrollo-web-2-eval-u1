@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q1-1",
+    "enunciado": "¿Cuáles son las tres meta-anotaciones que reúne @SpringBootApplication en la clase principal?",
+    "opciones": [
+      "@SpringBootConfiguration, @EnableAutoConfiguration y @ComponentScan.",
+      "@RestController, @Service y @Repository.",
+      "@Entity, @Table y @Transactional."
+    ],
+    "correcta": 0,
+    "explicacion": "La documentación oficial de Spring Boot establece que @SpringBootApplication equivale a declarar @SpringBootConfiguration, @EnableAutoConfiguration y @ComponentScan.",
+    "fuente": "F14"
+  },
+  {
+    "id": "q1-2",
+    "enunciado": "¿Qué significa el principio de retroceso (back-off) en la auto-configuración de Spring Boot?",
+    "opciones": [
+      "Que si la base de datos demora en responder, Spring Boot apaga el servidor Tomcat automáticamente.",
+      "Que las clases de auto-configuración usan condiciones como @ConditionalOnMissingBean: si defines tu propio bean (por ejemplo, un DataSource), el bean por defecto de Spring Boot se retira.",
+      "Que Spring Boot borra el archivo pom.xml después de compilar el proyecto."
+    ],
+    "correcta": 1,
+    "explicacion": "La auto-configuración de Spring Boot es no invasiva: evalúa condiciones como @ConditionalOnMissingBean y cede el paso cuando el desarrollador define su propia configuración.",
+    "fuente": "F15"
+  },
+  {
+    "id": "q1-3",
+    "enunciado": "¿Qué ventaja práctica ofrece el servidor Tomcat embebido frente al despliegue tradicional con archivos WAR?",
+    "opciones": [
+      "Permite ejecutar código Java sin tener instalada ninguna máquina virtual JVM.",
+      "Obliga a configurar todas las rutas en el archivo web.xml del sistema operativo.",
+      "El servidor web forma parte de las librerías del proyecto dentro de un JAR ejecutable autónomo (java -jar), sin instalar ni configurar un servidor externo aparte."
+    ],
+    "correcta": 2,
+    "explicacion": "Con un servidor embebido, la aplicación se empaqueta junto con Tomcat en un JAR ejecutable y se configura desde application.properties (por ejemplo, server.port).",
+    "fuente": "F18"
+  }
+]

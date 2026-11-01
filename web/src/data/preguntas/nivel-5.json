@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q5-1",
+    "enunciado": "¿Por qué es una mala práctica devolver directamente una entidad @Entity (como Paciente o Cita) desde un @RestController?",
+    "opciones": [
+      "Porque Jackson no sabe convertir clases que tengan la anotación @Entity.",
+      "Porque expone todos los atributos internos o sensibles de la tabla en el JSON, acopla el contrato de la API al esquema de base de datos y puede causar fallos con relaciones perezosas (LAZY).",
+      "Porque las entidades solo funcionan con bases de datos en memoria H2."
+    ],
+    "correcta": 1,
+    "explicacion": "Exponer la @Entity filtra campos internos al cliente, rompe clientes externos si cambia una columna en la tabla y puede provocar LazyInitializationException o recursión infinita al serializar.",
+    "fuente": "F19"
+  },
+  {
+    "id": "q5-2",
+    "enunciado": "¿Qué componente de Spring Framework permite centralizar el manejo de excepciones de todos los controladores y devolver respuestas estandarizadas RFC 9457?",
+    "opciones": [
+      "Un archivo web.xml con códigos de error escritos en HTML.",
+      "La anotación @GeneratedValue dentro de la entidad Cita.",
+      "Una clase anotada con @RestControllerAdvice que define métodos @ExceptionHandler y retorna objetos ProblemDetail."
+    ],
+    "correcta": 2,
+    "explicacion": "La documentación de Spring Framework detalla el uso de @RestControllerAdvice/@ControllerAdvice junto con ProblemDetail (RFC 9457) para responder con el código HTTP y detalle estructurado.",
+    "fuente": "F24"
+  },
+  {
+    "id": "q5-3",
+    "enunciado": "¿Cómo se deben gestionar las contraseñas de producción (como la de PostgreSQL) para no exponerlas en GitHub?",
+    "opciones": [
+      "Referenciando variables de entorno en el archivo de configuración (por ejemplo, ${DB_PASSWORD}) y dejando los archivos .env fuera del control de versiones en .gitignore.",
+      "Escribiéndolas en un comentario dentro de CitaController.java.",
+      "Subiendo el archivo application-prod.properties con la clave real y borrándola en un commit posterior."
+    ],
+    "correcta": 0,
+    "explicacion": "Borrar un secreto en un commit posterior no lo elimina del historial de Git; las credenciales reales se inyectan mediante variables de entorno del sistema en tiempo de ejecución.",
+    "fuente": "F19"
+  }
+]

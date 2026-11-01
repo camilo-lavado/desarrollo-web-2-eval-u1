@@ -1,0 +1,27 @@
+{
+  "name": "mision-spring-web",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "node ../scripts/render-diagramas.mjs && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "verificar": "node ../scripts/verificar-citas-reales.mjs",
+    "render-diagramas": "node ../scripts/render-diagramas.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "astro": "^5.3.0",
+    "mermaid": "^11.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.3"
+  }
+}

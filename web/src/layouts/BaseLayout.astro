@@ -1,0 +1,274 @@
+---
+import '../styles/global.css';
+import TopBar from '../components/TopBar';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Plataforma interactiva gamificada · Evaluación Unidad 1 de Desarrollo de Software Web II (IP San Sebastián) · Caso Reserva de Horas Médicas en Spring Boot 4.1.2 y Java 21.',
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="es-CL" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} — Misión Spring` : 'Misión Spring'}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Camilo Lavado" />
+    <meta name="theme-color" content="#0B6E5F" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} — Misión Spring`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_CL" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        try {
+          var raw = localStorage.getItem('mision-spring-progreso');
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed.tema === 'dark' || parsed.tema === 'light') {
+              document.documentElement.dataset.theme = parsed.tema;
+            }
+            if (parsed.estudio) {
+              window.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('details.ficha').forEach(function (d) {
+                  d.open = true;
+                });
+              });
+            }
+          } else if (
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+          ) {
+            document.documentElement.dataset.theme = 'dark';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="reading-progress-bar" id="reading-bar" aria-hidden="true"></div>
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+    <TopBar client:load currentPath={currentPath} />
+
+    <main id="contenido-principal">
+      <slot />
+    </main>
+
+    <!-- Botón flotante para volver arriba -->
+    <button
+      type="button"
+      id="btn-scroll-top"
+      class="scroll-top-btn"
+      aria-label="Volver arriba de la página"
+      title="Volver al inicio"
+    >
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6" />
+      </svg>
+    </button>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <div class="brand" style="margin-bottom: 8px;">
+              <b></b>Misión Spring
+            </div>
+            <p style="margin: 0 0 8px; font-size: 0.88rem; color: var(--muted);">
+              Caso Reserva de Horas Médicas (<code>cl.ipss.reservamedica</code>) en Spring Boot 4.1.2 y Java 21.
+              <br /><strong>Camilo Lavado</strong> · Desarrollo de Software Web II · IP San Sebastián
+            </p>
+            <div style="font-size: 0.8rem; color: var(--muted);">
+              Las salidas mostradas provienen de la ejecución real del backend y de documentación oficial.
+            </div>
+          </div>
+          <div class="footer-links">
+            <div>
+              <strong>Temas de trabajo</strong>
+              <ul>
+                <li><a href="/nivel/1">Tema 1 · El motor oculto</a></li>
+                <li><a href="/nivel/2">Tema 2 · Sigue a la petición</a></li>
+                <li><a href="/nivel/3">Tema 3 · La sala de máquinas</a></li>
+                <li><a href="/nivel/4">Tema 4 · El código por dentro</a></li>
+                <li><a href="/nivel/5">Tema 5 · Buenas prácticas y errores reales</a></li>
+                <li><a href="/nivel/6">Tema 6 · El radar 2026</a></li>
+              </ul>
+            </div>
+            <div>
+              <strong>Respaldo y Síntesis</strong>
+              <ul>
+                <li><a href="/cierre">Conclusiones y aprendizajes</a></li>
+                <li><a href="/glosario">Glosario técnico (10 términos)</a></li>
+                <li><a href="/fuentes">Bibliografía APA 7.ª edición</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script de mejoras UX: Copiar código, Plegar código y Scroll to Top -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 1. Añadir botón Copiar y botón Plegar a cada bloque pre
+        document.querySelectorAll('pre').forEach(function (preBlock) {
+          // Si ya tiene wrapper o botón, ignorar
+          if (preBlock.parentElement.classList.contains('code-block-wrapper')) return;
+
+          var wrapper = document.createElement('div');
+          wrapper.className = 'code-block-wrapper';
+          preBlock.parentNode.insertBefore(wrapper, preBlock);
+          wrapper.appendChild(preBlock);
+
+          var copyBtn = document.createElement('button');
+          copyBtn.type = 'button';
+          copyBtn.className = 'btn-copy-code';
+          copyBtn.setAttribute('aria-label', 'Copiar código al portapapeles');
+          copyBtn.title = 'Copiar al portapapeles';
+          copyBtn.innerHTML = `
+            <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+            </svg>
+            <span class="copy-label">Copiar</span>
+          `;
+
+          copyBtn.addEventListener('click', function () {
+            var textToCopy = preBlock.innerText || preBlock.textContent;
+            navigator.clipboard.writeText(textToCopy).then(function () {
+              copyBtn.classList.add('copied');
+              copyBtn.innerHTML = `
+                <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="copy-label">¡Copiado!</span>
+              `;
+              setTimeout(function () {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = `
+                  <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                  </svg>
+                  <span class="copy-label">Copiar</span>
+                `;
+              }, 2000);
+            }).catch(function () {});
+          });
+
+          wrapper.appendChild(copyBtn);
+
+          // Plegado para bloques de más de 15 líneas
+          var lines = (preBlock.innerText || preBlock.textContent || '').split('\n');
+          if (lines.length > 15) {
+            preBlock.classList.add('code-folded');
+            var foldBtn = document.createElement('button');
+            foldBtn.type = 'button';
+            foldBtn.className = 'btn-fold-code';
+            foldBtn.setAttribute('aria-expanded', 'false');
+            foldBtn.innerHTML = `
+              <svg class="ico-fold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+              <span>Ver el archivo completo (${lines.length} líneas)</span>
+            `;
+
+            foldBtn.addEventListener('click', function () {
+              var isFolded = preBlock.classList.toggle('code-folded');
+              foldBtn.setAttribute('aria-expanded', String(!isFolded));
+              if (isFolded) {
+                foldBtn.innerHTML = `
+                  <svg class="ico-fold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                  <span>Ver el archivo completo (${lines.length} líneas)</span>
+                `;
+              } else {
+                foldBtn.innerHTML = `
+                  <svg class="ico-fold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="18 15 12 9 6 15"/>
+                  </svg>
+                  <span>Plegar código</span>
+                `;
+              }
+            });
+
+            wrapper.appendChild(foldBtn);
+          }
+        });
+
+        // 2. Control del botón Volver Arriba
+        var scrollTopBtn = document.getElementById('btn-scroll-top');
+        if (scrollTopBtn) {
+          window.addEventListener('scroll', function () {
+            if (window.scrollY > 320) {
+              scrollTopBtn.classList.add('visible');
+            } else {
+              scrollTopBtn.classList.remove('visible');
+            }
+          }, { passive: true });
+
+          scrollTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+
+        // 3. Animaciones e interacciones de Scroll Reveal
+        var prefersReducedMotion =
+          window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+          var revealElements = document.querySelectorAll(
+            '.panel, .figura, .hero-pipe-container, .hero-card-3d, .turnos > li, .zigzag-row > div'
+          );
+          var observer = new IntersectionObserver(
+            function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-revealed');
+                  obs.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+          );
+
+          revealElements.forEach(function (el, index) {
+            el.classList.add('reveal-on-scroll');
+            if (el.parentElement && el.parentElement.classList.contains('turnos')) {
+              el.style.setProperty('--reveal-delay', (index % 6) * 80 + 'ms');
+            }
+            observer.observe(el);
+          });
+        }
+
+        // 4. Barra de progreso de lectura en el borde superior
+        var readingBar = document.getElementById('reading-bar');
+        if (readingBar) {
+          window.addEventListener('scroll', function () {
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              var pct = Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100));
+              readingBar.style.width = pct + '%';
+            }
+          }, { passive: true });
+        }
+      });
+    </script>
+  </body>
+</html>

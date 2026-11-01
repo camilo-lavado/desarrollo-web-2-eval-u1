@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fuentesAll from '../data/fuentes.json';
+
+// Regla de desambiguación APA 7 entre las fuentes LEÍDAS
+const leidas = fuentesAll.filter((f) => f.estado === 'leída');
+const sufijosMap = new Map<string, string>();
+const grupos: Record<string, typeof leidas> = {};
+
+for (const f of leidas) {
+  const key = `${f.autor}||${f.anio}`;
+  if (!grupos[key]) grupos[key] = [];
+  grupos[key].push(f);
+}
+
+for (const [, list] of Object.entries(grupos)) {
+  list.sort((a, b) => a.titulo.localeCompare(b.titulo, 'es', { sensitivity: 'base' }));
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  list.forEach((f, idx) => {
+    const suf = list.length > 1 ? (f.anio === 's. f.' ? `-${letters[idx]}` : letters[idx]) : '';
+    sufijosMap.set(f.id, `${f.anio}${suf}`);
+  });
+}
+
+function getAnioDisplay(f: (typeof fuentesAll)[0]) {
+  return sufijosMap.get(f.id) || f.anio;
+}
+
+function getAutorDisplay(autor: string) {
+  return autor.endsWith('.') ? autor : `${autor}.`;
+}
+
+const fuentesPauta = fuentesAll.filter((f) => f.pauta);
+const fuentesAdicionales = fuentesAll.filter((f) => !f.pauta);
+---
+
+<BaseLayout title="Fuentes · Bibliografía APA 7">
+  <section class="nivel">
+    <div class="wrap">
+      <header class="nivel-header">
+        <h1>Fuentes y bibliografía (APA 7.ª edición)</h1>
+        <span class="tag">Criterio 3 y 4 · Respaldo documental</span>
+      </header>
+
+      <p>
+        Listado completo de las 13 fuentes recomendadas en la Sección 5 de la pauta de evaluación y las fuentes oficiales adicionales de Spring Boot, Spring Framework y Spring Data JPA consultadas durante el desarrollo.
+      </p>
+
+      <div class="panel" style="margin-bottom: 24px;">
+        <h2>1. Las 13 fuentes de la Sección 5 de la pauta</h2>
+        <ol style="max-width: 82ch;">
+          {fuentesPauta.map((f) => (
+            <li id={f.id} style="margin-bottom: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.8rem; color: var(--accent);">[{f.id}]</span>{' '}
+              {getAutorDisplay(f.autor)} ({getAnioDisplay(f)}). <i>{f.titulo}</i>. En {f.en}.{' '}
+              <a href={f.url} target="_blank" rel="noopener noreferrer">{f.url}</a>{' '}
+              (consultado el {f.fechaConsulta}).{' '}
+              {f.estado !== 'leída' && (
+                <span class="tag" style="margin-left: 4px;">sin consultar</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="panel">
+        <h2>2. Fuentes oficiales adicionales consultadas (estado: leída)</h2>
+        <ul style="max-width: 82ch;">
+          {fuentesAdicionales.map((f) => (
+            <li id={f.id} style="margin-bottom: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.8rem; color: var(--accent);">[{f.id}]</span>{' '}
+              {getAutorDisplay(f.autor)} ({getAnioDisplay(f)}). <i>{f.titulo}</i>. En {f.en}.{' '}
+              <a href={f.url} target="_blank" rel="noopener noreferrer">{f.url}</a>{' '}
+              (consultado el {f.fechaConsulta}).
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

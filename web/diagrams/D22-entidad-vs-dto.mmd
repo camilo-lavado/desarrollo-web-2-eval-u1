@@ -1,0 +1,17 @@
+flowchart TB
+    classDef bad fill:#FBE9DC,color:#16302B,stroke:#9A4412,stroke-width:2px
+    classDef ok fill:#DDF3E8,color:#16302B,stroke:#17794F,stroke-width:2px
+    classDef base fill:#FFFFFF,color:#16302B,stroke:#3A4650,stroke-width:2px
+
+    DB[("Tabla pacientes / citas<br/>id, rut, telefono, email,<br/>motivo, relaciones LAZY")]:::base
+
+    subgraph MAL["Antipatrón: devolver @Entity directo"]
+        E1["Controlador devuelve<br/>entidad Paciente / Cita"]:::bad -->|"Jackson serializa todo"| E2["Cliente recibe datos internos:<br/>rut, telefono, email o<br/>falla LazyInitializationException"]:::bad
+    end
+
+    subgraph BIEN["Buena práctica: devolver DTO Record"]
+        D1["CitaService transforma con<br/>CitaResponse.desde(cita)"]:::ok -->|"filtra contrato explícito"| D2["Cliente recibe solo CitaResponse:<br/>id, nombrePaciente, nombreMedico,<br/>especialidad, fechaHora, estado"]:::ok
+    end
+
+    DB --> E1
+    DB --> D1

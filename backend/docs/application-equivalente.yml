@@ -1,0 +1,73 @@
+# Equivalente en YAML de application.properties + application-dev.properties + application-prod.properties.
+# No lo lee la aplicación (que usa los .properties en src/main/resources): es material de comparación
+# para la Pregunta 2 de la evaluación (mismo contenido, dos sintaxis).
+
+spring:
+  application:
+    name: reserva-medica
+  profiles:
+    active: dev
+  jpa:
+    open-in-view: false
+  mvc:
+    problemdetails:
+      enabled: true
+server:
+  error:
+    include-stacktrace: never
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:mem:reservamedica
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,mappings,conditions
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  h2:
+    console:
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

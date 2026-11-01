@@ -1,0 +1,1853 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24321 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] -----------------------< cl.ipss:reserva-medica >-----------------------
+[INFO] Building reserva-medica 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.2:run (default-cli) > test-compile @ reserva-medica >>>
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ reserva-medica ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ reserva-medica ---
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ reserva-medica ---
+[INFO] skip non existing resourceDirectory <ruta local omitida>\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ reserva-medica ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.1.2:run (default-cli) < test-compile @ reserva-medica <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.2:run (default-cli) @ reserva-medica ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-01T15:18:11.414-03:00  INFO 30576 --- [reserva-medica] [           main] c.i.r.ReservaMedicaApplication           : Starting ReservaMedicaApplication using Java 25.0.2 with PID 30576 (<ruta local omitida>\backend\target\classes started by <ruta local omitida> in <ruta local omitida>\backend)
+2026-11-01T15:18:11.418-03:00  INFO 30576 --- [reserva-medica] [           main] c.i.r.ReservaMedicaApplication           : The following 1 profile is active: "dev"
+2026-11-01T15:18:11.418-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.boot.SpringApplication               : Loading source class cl.ipss.reservamedica.ReservaMedicaApplication
+2026-11-01T15:18:11.454-03:00 DEBUG 30576 --- [reserva-medica] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@74a6f9c1
+2026-11-01T15:18:12.058-03:00  INFO 30576 --- [reserva-medica] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-01T15:18:12.071-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'cl.ipss.reservamedica'. Automatic @Repository and @Entity scanning is enabled.
+2026-11-01T15:18:12.105-03:00  INFO 30576 --- [reserva-medica] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 3 JPA repository interfaces.
+2026-11-01T15:18:12.571-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: <ruta local omitida>/.m2\repository\org\springframework\boot\spring-boot-web-server\4.1.2\spring-boot-web-server-4.1.2.jar
+2026-11-01T15:18:12.571-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: <ruta local omitida>/.m2\repository\org\springframework\boot\spring-boot-web-server\4.1.2\spring-boot-web-server-4.1.2.jar
+2026-11-01T15:18:12.573-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2026-11-01T15:18:12.593-03:00  INFO 30576 --- [reserva-medica] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-11-01T15:18:12.605-03:00  INFO 30576 --- [reserva-medica] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-01T15:18:12.605-03:00  INFO 30576 --- [reserva-medica] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-11-01T15:18:12.658-03:00 DEBUG 30576 --- [reserva-medica] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2026-11-01T15:18:12.658-03:00  INFO 30576 --- [reserva-medica] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1204 ms
+2026-11-01T15:18:12.726-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: webMvcObservationFilter urls=[/*] order=-2147483647, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2026-11-01T15:18:12.726-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/], h2Console urls=[/h2-console/*]
+2026-11-01T15:18:12.741-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
+2026-11-01T15:18:12.743-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2026-11-01T15:18:12.743-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+2026-11-01T15:18:12.743-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
+2026-11-01T15:18:12.859-03:00  INFO 30576 --- [reserva-medica] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-01T15:18:12.902-03:00  INFO 30576 --- [reserva-medica] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-11-01T15:18:13.259-03:00  INFO 30576 --- [reserva-medica] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-01T15:18:13.285-03:00  INFO 30576 --- [reserva-medica] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-01T15:18:13.435-03:00  INFO 30576 --- [reserva-medica] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:reservamedica user=SA
+2026-11-01T15:18:13.436-03:00  INFO 30576 --- [reserva-medica] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-01T15:18:13.483-03:00  INFO 30576 --- [reserva-medica] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:reservamedica]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: RESERVAMEDICA/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-01T15:18:14.241-03:00  INFO 30576 --- [reserva-medica] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-01T15:18:14.262-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    drop table if exists citas cascade 
+Hibernate: 
+    drop table if exists citas cascade 
+2026-11-01T15:18:14.263-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    drop table if exists medicos cascade 
+Hibernate: 
+    drop table if exists medicos cascade 
+2026-11-01T15:18:14.263-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    drop table if exists pacientes cascade 
+Hibernate: 
+    drop table if exists pacientes cascade 
+2026-11-01T15:18:14.268-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    create table citas (
+        fecha_hora timestamp(6) not null,
+        id bigint generated by default as identity,
+        medico_id bigint not null,
+        paciente_id bigint not null,
+        motivo varchar(255),
+        estado enum ('AGENDADA','ATENDIDA','CANCELADA') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table citas (
+        fecha_hora timestamp(6) not null,
+        id bigint generated by default as identity,
+        medico_id bigint not null,
+        paciente_id bigint not null,
+        motivo varchar(255),
+        estado enum ('AGENDADA','ATENDIDA','CANCELADA') not null,
+        primary key (id)
+    )
+2026-11-01T15:18:14.276-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    create table medicos (
+        id bigint generated by default as identity,
+        especialidad varchar(255) not null,
+        nombre varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table medicos (
+        id bigint generated by default as identity,
+        especialidad varchar(255) not null,
+        nombre varchar(255) not null,
+        primary key (id)
+    )
+2026-11-01T15:18:14.276-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    create table pacientes (
+        id bigint generated by default as identity,
+        rut varchar(10) not null unique,
+        email varchar(255) not null,
+        nombre varchar(255) not null,
+        telefono varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table pacientes (
+        id bigint generated by default as identity,
+        rut varchar(10) not null unique,
+        email varchar(255) not null,
+        nombre varchar(255) not null,
+        telefono varchar(255),
+        primary key (id)
+    )
+2026-11-01T15:18:14.279-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    alter table if exists citas 
+       add constraint FKbfl57ey8hx1a3ubtrpy8x9ll 
+       foreign key (medico_id) 
+       references medicos
+Hibernate: 
+    alter table if exists citas 
+       add constraint FKbfl57ey8hx1a3ubtrpy8x9ll 
+       foreign key (medico_id) 
+       references medicos
+2026-11-01T15:18:14.291-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    alter table if exists citas 
+       add constraint FKnqrsxxcuysfcxiekvixm7h8r1 
+       foreign key (paciente_id) 
+       references pacientes
+Hibernate: 
+    alter table if exists citas 
+       add constraint FKnqrsxxcuysfcxiekvixm7h8r1 
+       foreign key (paciente_id) 
+       references pacientes
+2026-11-01T15:18:14.294-03:00  INFO 30576 --- [reserva-medica] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-01T15:18:14.356-03:00  INFO 30576 --- [reserva-medica] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-01T15:18:15.051-03:00 DEBUG 30576 --- [reserva-medica] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 6 mappings in 'requestMappingHandlerMapping'
+2026-11-01T15:18:15.072-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-11-01T15:18:15.090-03:00 DEBUG 30576 --- [reserva-medica] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-11-01T15:18:15.150-03:00 DEBUG 30576 --- [reserva-medica] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-11-01T15:18:15.246-03:00  INFO 30576 --- [reserva-medica] [           main] o.s.b.h.a.H2ConsoleAutoConfiguration     : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:reservamedica'
+2026-11-01T15:18:15.293-03:00  INFO 30576 --- [reserva-medica] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoints beneath base path '/actuator'
+2026-11-01T15:18:15.366-03:00  INFO 30576 --- [reserva-medica] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-11-01T15:18:15.374-03:00 DEBUG 30576 --- [reserva-medica] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+
+============================
+CONDITIONS EVALUATION REPORT
+============================
+
+
+Positive matches:
+-----------------
+
+   AopAutoConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.aop.auto=true) matched (OnPropertyCondition)
+
+   AopAutoConfiguration.AspectJAutoProxyingConfiguration matched:
+      - @ConditionalOnClass found required class 'org.aspectj.weaver.Advice' (OnClassCondition)
+
+   AopAutoConfiguration.AspectJAutoProxyingConfiguration.CglibAutoProxyConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
+
+   ApplicationAvailabilityAutoConfiguration#applicationAvailability matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.availability.ApplicationAvailability; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   AvailabilityHealthContributorAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.health.contributor.Health' (OnClassCondition)
+
+   AvailabilityProbesAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.actuate.endpoint.annotation.Endpoint' (OnClassCondition)
+      - @ConditionalOnBooleanProperty (management.endpoint.health.probes.enabled=true) matched (OnPropertyCondition)
+
+   AvailabilityProbesAutoConfiguration#livenessStateHealthIndicator matched:
+      - @ConditionalOnMissingBean (names: livenessStateHealthIndicator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   AvailabilityProbesAutoConfiguration#readinessStateHealthIndicator matched:
+      - @ConditionalOnMissingBean (names: readinessStateHealthIndicator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   CompositeMeterRegistryAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.instrument.composite.CompositeMeterRegistry' (OnClassCondition)
+
+   ConditionsReportEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   ConditionsReportEndpointAutoConfiguration#conditionsReportEndpoint matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.autoconfigure.condition.ConditionsReportEndpoint; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   DataJpaRepositoriesAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.data.jpa.repository.JpaRepository' (OnClassCondition)
+      - @ConditionalOnBooleanProperty (spring.data.jpa.repositories.enabled=true) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: javax.sql.DataSource; SearchStrategy: all) found bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataRepositoryMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.data.repository.Repository' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry' (OnBeanCondition)
+
+   DataRepositoryMetricsAutoConfiguration#metricsRepositoryMethodInvocationListener matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.data.metrics.MetricsRepositoryMethodInvocationListener; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataRepositoryMetricsAutoConfiguration#repositoryTagsProvider matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.data.metrics.RepositoryTagsProvider; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+      - @ConditionalOnMissingBean (types: io.r2dbc.spi.ConnectionFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceAutoConfiguration.PooledDataSourceConfiguration matched:
+      - AnyNestedCondition 1 matched 1 did not; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.PooledDataSourceAvailable PooledDataSource found supported DataSource; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.ExplicitType @ConditionalOnProperty (spring.datasource.type) did not find property 'spring.datasource.type' (DataSourceAutoConfiguration.PooledDataSourceCondition)
+      - @ConditionalOnMissingBean (types: javax.sql.DataSource,javax.sql.XADataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceAutoConfiguration.PooledDataSourceConfiguration#jdbcConnectionDetails matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.jdbc.autoconfigure.JdbcConnectionDetails; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceConfiguration.Hikari matched:
+      - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+      - @ConditionalOnProperty (spring.datasource.type=com.zaxxer.hikari.HikariDataSource) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceHealthContributorAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource', 'org.springframework.boot.health.autoconfigure.contributor.ConditionalOnEnabledHealthIndicator' (OnClassCondition)
+      - @ConditionalOnEnabledHealthIndicator management.health.defaults.enabled is considered true (OnEnabledHealthIndicatorCondition)
+      - @ConditionalOnBean (types: javax.sql.DataSource; SearchStrategy: all) found bean 'dataSource' (OnBeanCondition)
+
+   DataSourceHealthContributorAutoConfiguration#dbHealthContributor matched:
+      - @ConditionalOnMissingBean (names: dbHealthIndicator,dbHealthContributor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourceInitializationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.jdbc.datasource.init.DatabasePopulator' (OnClassCondition)
+      - SQL InitializationDatabase Initialization default value is EMBEDDED (OnSqlInitializationCondition)
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.boot.sql.autoconfigure.init.ApplicationScriptDatabaseInitializer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.HikariPoolDataSourceMetadataProviderConfiguration matched:
+      - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+
+   DataSourcePoolMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+      - @ConditionalOnBean (types: javax.sql.DataSource,io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found beans 'simpleMeterRegistry', 'dataSource' (OnBeanCondition)
+
+   DataSourcePoolMetricsAutoConfiguration.DataSourcePoolMetadataMetricsConfiguration matched:
+      - @ConditionalOnBean (types: org.springframework.boot.jdbc.metadata.DataSourcePoolMetadataProvider; SearchStrategy: all) found bean 'hikariPoolDataSourceMetadataProvider' (OnBeanCondition)
+
+   DataSourcePoolMetricsAutoConfiguration.HikariDataSourceMetricsConfiguration matched:
+      - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+
+   DataSourceTransactionManagerAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.transaction.TransactionManager' (OnClassCondition)
+
+   DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+
+   DataWebAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.data.web.PageableHandlerMethodArgumentResolver', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.PageableHandlerMethodArgumentResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataWebAutoConfiguration#pageableCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataWebAutoConfiguration#sortCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.config.SortHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DataWebAutoConfiguration#springDataWebSettings matched:
+      - @ConditionalOnMissingBean (types: org.springframework.data.web.config.SpringDataWebSettings; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DiskSpaceHealthContributorAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.health.contributor.Health' (OnClassCondition)
+      - @ConditionalOnEnabledHealthIndicator management.health.defaults.enabled is considered true (OnEnabledHealthIndicatorCondition)
+
+   DiskSpaceHealthContributorAutoConfiguration#diskSpaceHealthIndicator matched:
+      - @ConditionalOnMissingBean (names: diskSpaceHealthIndicator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   DispatcherServletAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
+      - Default DispatcherServlet did not find dispatcher servlet beans (DispatcherServletAutoConfiguration.DefaultDispatcherServletCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
+      - DispatcherServlet Registration did not find servlet registration bean (DispatcherServletAutoConfiguration.DispatcherServletRegistrationCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration#dispatcherServletRegistration matched:
+      - @ConditionalOnBean (names: dispatcherServlet types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet' (OnBeanCondition)
+
+   EndpointAutoConfiguration#endpointCachingOperationInvokerAdvisor matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.invoker.cache.CachingOperationInvokerAdvisor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   EndpointAutoConfiguration#endpointOperationParameterMapper matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.invoke.ParameterValueMapper; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   EndpointAutoConfiguration#propertiesEndpointAccessResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.EndpointAccessResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   ErrorMvcAutoConfiguration#basicErrorController matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.error.ErrorController; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration#errorAttributes matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.error.ErrorAttributes; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration.DefaultErrorViewResolverConfiguration#conventionErrorViewResolver matched:
+      - @ConditionalOnBean (types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet'; @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.autoconfigure.error.ErrorViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.web.error.whitelabel.enabled=true) matched (OnPropertyCondition)
+      - ErrorTemplate Missing did not find error template view (ErrorMvcAutoConfiguration.ErrorTemplateMissingCondition)
+
+   ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration#beanNameViewResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.BeanNameViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration#defaultErrorView matched:
+      - @ConditionalOnMissingBean (names: error; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   H2ConsoleAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.h2.server.web.JakartaWebServlet' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBooleanProperty (spring.h2.console.enabled=true) matched (OnPropertyCondition)
+
+   HealthContributorAutoConfiguration#pingHealthContributor matched:
+      - @ConditionalOnEnabledHealthIndicator management.health.defaults.enabled is considered true (OnEnabledHealthIndicatorCondition)
+
+   HealthContributorRegistryAutoConfiguration#healthContributorRegistry matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.health.registry.HealthContributorRegistry; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HealthEndpointAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.actuate.endpoint.annotation.Endpoint' (OnClassCondition)
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+      - @ConditionalOnBean (types: org.springframework.boot.health.registry.HealthContributorRegistry; SearchStrategy: all) found bean 'healthContributorRegistry' (OnBeanCondition)
+
+   HealthEndpointConfiguration#healthEndpoint matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.health.actuate.endpoint.HealthEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HealthEndpointConfiguration#healthEndpointGroupMembershipValidator matched:
+      - @ConditionalOnBooleanProperty (management.endpoint.health.validate-group-membership=true) matched (OnPropertyCondition)
+
+   HealthEndpointConfiguration#healthEndpointGroups matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.health.actuate.endpoint.HealthEndpointGroups; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HealthEndpointConfiguration#healthHttpCodeStatusMapper matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.health.actuate.endpoint.HttpCodeStatusMapper; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HealthEndpointConfiguration#healthStatusAggregator matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.health.actuate.endpoint.StatusAggregator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HealthEndpointWebExtensionConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+      - @ConditionalOnBean (types: org.springframework.boot.health.actuate.endpoint.HealthEndpoint; SearchStrategy: all) found bean 'healthEndpoint' (OnBeanCondition)
+
+   HealthEndpointWebExtensionConfiguration#healthEndpointWebExtension matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.health.actuate.endpoint.HealthEndpointWebExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HibernateJpaAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean', 'jakarta.persistence.EntityManager', 'org.hibernate.engine.spi.SessionImplementor' (OnClassCondition)
+
+   HibernateJpaConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+
+   HttpEncodingAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.filter.CharacterEncodingFilter' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBooleanProperty (spring.servlet.encoding.enabled=true) matched (OnPropertyCondition)
+
+   HttpEncodingAutoConfiguration#characterEncodingFilter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.filter.CharacterEncodingFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   HttpMessageConvertersAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.http.converter.HttpMessageConverter' (OnClassCondition)
+      - NoneNestedConditions 0 matched 1 did not; NestedCondition on HttpMessageConvertersAutoConfiguration.NotReactiveWebApplicationCondition.ReactiveWebApplication did not find reactive web application classes (HttpMessageConvertersAutoConfiguration.NotReactiveWebApplicationCondition)
+
+   HttpMessageConvertersAutoConfiguration.StringHttpMessageConverterConfiguration#stringHttpMessageConvertersCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.http.converter.StringHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   InfoEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   InfoEndpointAutoConfiguration#infoEndpoint matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.info.InfoEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'tools.jackson.databind.json.JsonMapper' (OnClassCondition)
+
+   JacksonAutoConfiguration#jacksonJsonMapper matched:
+      - @ConditionalOnMissingBean (types: tools.jackson.databind.json.JsonMapper; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration#jsonFactory matched:
+      - @ConditionalOnMissingBean (types: tools.jackson.core.json.JsonFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration#jsonMapperBuilder matched:
+      - @ConditionalOnMissingBean (types: tools.jackson.databind.json.JsonMapper$Builder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JacksonAutoConfiguration.JsonProblemDetailsConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.http.ProblemDetail' (OnClassCondition)
+
+   JacksonEndpointAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'tools.jackson.databind.json.JsonMapper' (OnClassCondition)
+
+   JacksonEndpointAutoConfiguration#endpointJsonMapper matched:
+      - @ConditionalOnBooleanProperty (management.endpoints.jackson.isolated-json-mapper=true) matched (OnPropertyCondition)
+
+   JacksonHttpMessageConvertersConfiguration.JacksonJsonHttpMessageConverterConfiguration matched:
+      - @ConditionalOnClass found required class 'tools.jackson.databind.json.JsonMapper' (OnClassCondition)
+      - @ConditionalOnProperty (spring.http.converters.preferred-json-mapper=jackson) matched (OnPropertyCondition)
+      - @ConditionalOnBean (types: tools.jackson.databind.json.JsonMapper; SearchStrategy: all) found bean 'jacksonJsonMapper' (OnBeanCondition)
+
+   JacksonHttpMessageConvertersConfiguration.JacksonJsonHttpMessageConverterConfiguration#jacksonJsonHttpMessageConvertersCustomizer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.http.converter.json.JacksonJsonHttpMessageConverter ignored: org.springframework.hateoas.server.mvc.TypeConstrainedJacksonJsonHttpMessageConverter,org.springframework.data.rest.webmvc.alps.AlpsJacksonJsonHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JdbcClientAutoConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate; SearchStrategy: all) found a single bean 'namedParameterJdbcTemplate'; @ConditionalOnMissingBean (types: org.springframework.jdbc.core.simple.JdbcClient; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JdbcTemplateAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate' (OnClassCondition)
+      - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+
+   JdbcTemplateConfiguration matched:
+      - @ConditionalOnMissingBean (types: org.springframework.jdbc.core.JdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#entityManagerFactory matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#entityManagerFactoryBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.jpa.EntityManagerFactoryBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#jpaVendorAdapter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.JpaVendorAdapter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration#transactionManager matched:
+      - @ConditionalOnMissingBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration.PersistenceManagedTypesConfiguration matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JpaBaseConfiguration.PersistenceManagedTypesConfiguration#persistenceManagedTypes matched:
+      - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.persistenceunit.PersistenceManagedTypes; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JtaAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.transaction.Transaction' (OnClassCondition)
+      - @ConditionalOnBooleanProperty (spring.jta.enabled=true) matched (OnPropertyCondition)
+
+   JvmMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry' (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#classLoaderMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.ClassLoaderMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#jvmCompilationMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.JvmCompilationMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#jvmGcMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.JvmGcMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#jvmHeapPressureMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.JvmHeapPressureMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#jvmInfoMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.JvmInfoMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#jvmMemoryMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   JvmMetricsAutoConfiguration#jvmThreadMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   LifecycleAutoConfiguration#defaultLifecycleProcessor matched:
+      - @ConditionalOnMissingBean (names: lifecycleProcessor; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   LogbackMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'io.micrometer.core.instrument.MeterRegistry', 'ch.qos.logback.classic.LoggerContext', 'org.slf4j.LoggerFactory' (OnClassCondition)
+      - LogbackLoggingCondition ILoggerFactory is a Logback LoggerContext (LogbackMetricsAutoConfiguration.LogbackLoggingCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry' (OnBeanCondition)
+
+   LogbackMetricsAutoConfiguration#logbackMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.logging.LogbackMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ManagementContextAutoConfiguration.SameManagementContextConfiguration matched:
+      - Management Port actual port type (SAME) matched required type (OnManagementPortCondition)
+
+   MappingsEndpointAutoConfiguration matched:
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   MetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.annotation.Timed' (OnClassCondition)
+
+   MetricsAutoConfiguration#micrometerClock matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.Clock; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MultipartAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBooleanProperty (spring.servlet.multipart.enabled=true) matched (OnPropertyCondition)
+
+   MultipartAutoConfiguration#multipartConfigElement matched:
+      - @ConditionalOnMissingBean (types: jakarta.servlet.MultipartConfigElement; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   MultipartAutoConfiguration#multipartResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   NamedParameterJdbcTemplateConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.jdbc.core.JdbcTemplate; SearchStrategy: all) found a single bean 'jdbcTemplate'; @ConditionalOnMissingBean (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ObservationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.observation.ObservationRegistry' (OnClassCondition)
+
+   ObservationAutoConfiguration#observationRegistry matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.observation.ObservationRegistry; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ObservationAutoConfiguration#spelValueExpressionResolver matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.common.annotation.ValueExpressionResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   PersistenceExceptionTranslationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor' (OnClassCondition)
+
+   PersistenceExceptionTranslationAutoConfiguration#persistenceExceptionTranslationPostProcessor matched:
+      - @ConditionalOnBooleanProperty (spring.persistence.exceptiontranslation.enabled=true) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   PropertyPlaceholderAutoConfiguration#propertySourcesPlaceholderConfigurer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.context.support.PropertySourcesPlaceholderConfigurer; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   ScheduledTasksObservationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.observation.ObservationRegistry; SearchStrategy: all) found bean 'observationRegistry' (OnBeanCondition)
+
+   ServletEndpointManagementContextConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+
+   ServletManagementContextAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   ServletMappingsAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint', 'org.springframework.boot.actuate.web.mappings.MappingsEndpoint' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+
+   SimpleMetricsExportAutoConfiguration matched:
+      - @ConditionalOnEnabledMetricsExport management.defaults.metrics.export.enabled is considered true (OnMetricsExportEnabledCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.Clock; SearchStrategy: all) found bean 'micrometerClock'; @ConditionalOnMissingBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SimpleMetricsExportAutoConfiguration#simpleConfig matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.simple.SimpleConfig; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SslAutoConfiguration#sslBundleRegistry matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.ssl.SslBundleRegistry,org.springframework.boot.ssl.SslBundles; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SslHealthContributorAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.health.contributor.Health' (OnClassCondition)
+      - @ConditionalOnEnabledHealthIndicator management.health.defaults.enabled is considered true (OnEnabledHealthIndicatorCondition)
+
+   SslHealthContributorAutoConfiguration#sslHealthIndicator matched:
+      - @ConditionalOnMissingBean (names: sslHealthIndicator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SslHealthContributorAutoConfiguration#sslInfo matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.info.SslInfo; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SslMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry,org.springframework.boot.ssl.SslBundles; SearchStrategy: all) found beans 'sslBundleRegistry', 'simpleMeterRegistry' (OnBeanCondition)
+
+   StartupTimeMetricsListenerAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry' (OnBeanCondition)
+
+   StartupTimeMetricsListenerAutoConfiguration#startupTimeMetrics matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.micrometer.metrics.startup.StartupTimeMetricsListener; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SystemMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry' (OnBeanCondition)
+
+   SystemMetricsAutoConfiguration#diskSpaceMetrics matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.micrometer.metrics.system.DiskSpaceMetricsBinder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SystemMetricsAutoConfiguration#fileDescriptorMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.system.FileDescriptorMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SystemMetricsAutoConfiguration#processorMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.system.ProcessorMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SystemMetricsAutoConfiguration#uptimeMetrics matched:
+      - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.system.UptimeMetrics; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskExecutionAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor' (OnClassCondition)
+
+   TaskExecutorConfigurations.AsyncConfigurerConfiguration matched:
+      - @ConditionalOnMissingBean (types: org.springframework.scheduling.annotation.AsyncConfigurer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskExecutorConfigurations.TaskExecutorConfiguration matched:
+      - AnyNestedCondition 1 matched 1 did not; NestedCondition on TaskExecutorConfigurations.OnExecutorCondition.ModelCondition @ConditionalOnProperty (spring.task.execution.mode=force) did not find property 'spring.task.execution.mode'; NestedCondition on TaskExecutorConfigurations.OnExecutorCondition.ExecutorBeanCondition @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) did not find any beans (TaskExecutorConfigurations.OnExecutorCondition)
+
+   TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutor matched:
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskExecutorConfigurations.ThreadPoolTaskExecutorBuilderConfiguration#threadPoolTaskExecutorBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.ThreadPoolTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TaskExecutorMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'io.micrometer.core.instrument.binder.jvm.ExecutorServiceMetrics' (OnClassCondition)
+      - @ConditionalOnBean (types: java.util.concurrent.Executor,io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found beans 'applicationTaskExecutor', 'simpleMeterRegistry' (OnBeanCondition)
+
+   TaskSchedulingAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler' (OnClassCondition)
+
+   TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+
+   TaskSchedulingConfigurations.ThreadPoolTaskSchedulerBuilderConfiguration#threadPoolTaskSchedulerBuilder matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.ThreadPoolTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TemplateEngineConfigurations.DefaultTemplateEngineConfiguration#templateEngine matched:
+      - @ConditionalOnMissingBean (types: org.thymeleaf.spring6.ISpringTemplateEngine; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ThymeleafAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.thymeleaf.templatemode.TemplateMode', 'org.thymeleaf.spring6.SpringTemplateEngine' (OnClassCondition)
+
+   ThymeleafAutoConfiguration.DefaultTemplateResolverConfiguration matched:
+      - @ConditionalOnMissingBean (names: defaultTemplateResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafWebMvcConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafWebMvcConfiguration.ThymeleafViewResolverConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.servlet.view.AbstractCachingViewResolver' (OnClassCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafWebMvcConfiguration.ThymeleafViewResolverConfiguration#thymeleafViewResolver matched:
+      - @ConditionalOnMissingBean (names: thymeleafViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TomcatMetricsAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'io.micrometer.core.instrument.binder.tomcat.TomcatMetrics', 'org.apache.catalina.Manager', 'io.micrometer.core.instrument.MeterRegistry' (OnClassCondition)
+      - @ConditionalOnWebApplication (required) found 'session' scope (OnWebApplicationCondition)
+
+   TomcatMetricsAutoConfiguration#tomcatMetricsBinder matched:
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry'; @ConditionalOnMissingBean (types: io.micrometer.core.instrument.binder.tomcat.TomcatMetrics,org.springframework.boot.tomcat.metrics.TomcatMetricsBinder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TomcatServletWebServerAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.ServletRequest', 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol', 'org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+
+   TomcatServletWebServerAutoConfiguration#tomcatServletWebServerFactory matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.web.server.servlet.ServletWebServerFactory; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   TomcatWebServerConfiguration matched:
+      - @ConditionalOnWarDeployment the application is not deployed as a WAR file. (OnWarDeploymentCondition)
+
+   TomcatWebServerConfiguration.TomcatWebSocketConfiguration matched:
+      - @ConditionalOnClass found required class 'org.apache.tomcat.websocket.server.WsSci' (OnClassCondition)
+
+   TransactionAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+
+   TransactionAutoConfiguration.EnableTransactionManagementConfiguration matched:
+      - @ConditionalOnBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) found bean 'transactionManager'; @ConditionalOnMissingBean (types: org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TransactionAutoConfiguration.EnableTransactionManagementConfiguration.CglibAutoProxyConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
+
+   TransactionAutoConfiguration.TransactionTemplateConfiguration matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.transaction.PlatformTransactionManager; SearchStrategy: all) found a single bean 'transactionManager' (OnBeanCondition)
+
+   TransactionAutoConfiguration.TransactionTemplateConfiguration#transactionTemplate matched:
+      - @ConditionalOnMissingBean (types: org.springframework.transaction.support.TransactionOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TransactionManagerCustomizationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+
+   TransactionManagerCustomizationAutoConfiguration#platformTransactionManagerCustomizers matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.transaction.autoconfigure.TransactionManagerCustomizers; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ValidationAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'jakarta.validation.executable.ExecutableValidator' (OnClassCondition)
+      - @ConditionalOnResource found location classpath:META-INF/services/jakarta.validation.spi.ValidationProvider (OnResourceCondition)
+
+   ValidationAutoConfiguration#defaultValidator matched:
+      - @ConditionalOnMissingBean (types: jakarta.validation.Validator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ValidationAutoConfiguration#methodValidationPostProcessor matched:
+      - @ConditionalOnMissingBean (types: org.springframework.validation.beanvalidation.MethodValidationPostProcessor; SearchStrategy: current) did not find any beans (OnBeanCondition)
+
+   WebEndpointAutoConfiguration matched:
+      - @ConditionalOnWebApplication (required) found 'session' scope (OnWebApplicationCondition)
+
+   WebEndpointAutoConfiguration#controllerEndpointDiscoverer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpointsSupplier; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebEndpointAutoConfiguration#endpointMediaTypes matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.web.EndpointMediaTypes; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebEndpointAutoConfiguration#pathMappedEndpoints matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.web.PathMappedEndpoints; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebEndpointAutoConfiguration#webEndpointDiscoverer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.web.WebEndpointsSupplier; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebEndpointAutoConfiguration.WebEndpointServletConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+
+   WebEndpointAutoConfiguration.WebEndpointServletConfiguration#servletEndpointDiscoverer matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.endpoint.web.annotation.ServletEndpointsSupplier; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration#formContentFilter matched:
+      - @ConditionalOnBooleanProperty (spring.mvc.formcontent.filter.enabled=true) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.web.filter.FormContentFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.EnableWebMvcConfiguration#flashMapManager matched:
+      - @ConditionalOnMissingBean (names: flashMapManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.EnableWebMvcConfiguration#localeResolver matched:
+      - @ConditionalOnMissingBean (names: localeResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.EnableWebMvcConfiguration#viewNameTranslator matched:
+      - @ConditionalOnMissingBean (names: viewNameTranslator; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.ProblemDetailsErrorHandlingConfiguration matched:
+      - @ConditionalOnBooleanProperty (spring.mvc.problemdetails.enabled=true) matched (OnPropertyCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#defaultViewResolver matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.InternalResourceViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#requestContextFilter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.context.request.RequestContextListener,org.springframework.web.filter.RequestContextFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#viewResolver matched:
+      - @ConditionalOnBean (types: org.springframework.web.servlet.ViewResolver; SearchStrategy: all) found beans 'defaultViewResolver', 'beanNameViewResolver', 'mvcViewResolver'; @ConditionalOnMissingBean (names: viewResolver types: org.springframework.web.servlet.view.ContentNegotiatingViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBean (types: org.springframework.web.servlet.DispatcherServlet,org.springframework.boot.actuate.endpoint.web.WebEndpointsSupplier; SearchStrategy: all) found beans 'webEndpointDiscoverer', 'dispatcherServlet' (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration#controllerEndpointHandlerMapping matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.actuate.endpoint.web.ControllerEndpointHandlerMapping; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration#endpointJsonMapperWebMvcConfigurer matched:
+      - @ConditionalOnBean (types: org.springframework.boot.actuate.endpoint.jackson.EndpointJsonMapper; SearchStrategy: all) found bean 'endpointJsonMapper' (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration#webEndpointServletHandlerMapping matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.webmvc.actuate.endpoint.web.WebMvcEndpointHandlerMapping; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration.HealthConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.health.actuate.endpoint.HealthEndpoint' (OnClassCondition)
+
+   WebMvcHealthEndpointExtensionAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.boot.health.actuate.endpoint.HealthEndpoint' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+      - @ConditionalOnBean (types: org.springframework.boot.health.actuate.endpoint.HealthEndpoint,org.springframework.boot.actuate.endpoint.web.WebEndpointsSupplier,org.springframework.boot.health.actuate.endpoint.HealthEndpointGroups; SearchStrategy: all) found beans 'webEndpointDiscoverer', 'healthEndpoint', 'healthEndpointGroups' (OnBeanCondition)
+
+   WebMvcMappingsAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.boot.actuate.web.mappings.MappingsEndpoint' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnAvailableEndpoint marked as exposed by a 'management.endpoints.web.exposure' property (OnAvailableEndpointCondition)
+      - @ConditionalOnBean (types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet' (OnBeanCondition)
+
+   WebMvcObservationAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.web.servlet.DispatcherServlet', 'io.micrometer.observation.Observation', 'org.springframework.boot.micrometer.observation.autoconfigure.ObservationProperties' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBean (types: io.micrometer.observation.ObservationRegistry; SearchStrategy: all) found bean 'observationRegistry' (OnBeanCondition)
+
+   WebMvcObservationAutoConfiguration#webMvcObservationFilter matched:
+      - @ConditionalOnMissingBean (types: org.springframework.web.filter.ServerHttpObservationFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebMvcObservationAutoConfiguration.MeterFilterConfiguration matched:
+      - @ConditionalOnClass found required classes 'io.micrometer.core.instrument.MeterRegistry', 'org.springframework.boot.micrometer.metrics.autoconfigure.MetricsProperties' (OnClassCondition)
+      - @ConditionalOnBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found bean 'simpleMeterRegistry' (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+   AopAutoConfiguration.AspectJAutoProxyingConfiguration.JdkDynamicAutoProxyConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=false) did not find property 'spring.aop.proxy-target-class' (OnPropertyCondition)
+
+   AopAutoConfiguration.ClassProxyingConfiguration:
+      Did not match:
+         - @ConditionalOnMissingClass found unwanted class 'org.aspectj.weaver.Advice' (OnClassCondition)
+
+   AppOpticsMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.appoptics.AppOpticsMeterRegistry' (OnClassCondition)
+
+   AtlasMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.atlas.AtlasMeterRegistry' (OnClassCondition)
+
+   AuditAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.boot.actuate.audit.AuditEventRepository; SearchStrategy: all) did not find any beans of type org.springframework.boot.actuate.audit.AuditEventRepository (OnBeanCondition)
+      Matched:
+         - @ConditionalOnBooleanProperty (management.auditevents.enabled=true) matched (OnPropertyCondition)
+
+   AuditEventsEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   AvailabilityHealthContributorAutoConfiguration#livenessStateHealthIndicator:
+      Did not match:
+         - @ConditionalOnBooleanProperty (management.health.livenessstate.enabled=true) did not find property 'management.health.livenessstate.enabled' (OnPropertyCondition)
+
+   AvailabilityHealthContributorAutoConfiguration#readinessStateHealthIndicator:
+      Did not match:
+         - @ConditionalOnBooleanProperty (management.health.readinessstate.enabled=true) did not find property 'management.health.readinessstate.enabled' (OnPropertyCondition)
+
+   BeansEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   CompositeMeterRegistryConfiguration:
+      Did not match:
+         - NoneNestedConditions 1 matched 1 did not; NestedCondition on CompositeMeterRegistryConfiguration.MultipleNonPrimaryMeterRegistriesCondition.SingleInjectableMeterRegistry @ConditionalOnSingleCandidate (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found a single bean 'simpleMeterRegistry'; NestedCondition on CompositeMeterRegistryConfiguration.MultipleNonPrimaryMeterRegistriesCondition.NoMeterRegistryCondition @ConditionalOnMissingBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found beans of type 'io.micrometer.core.instrument.MeterRegistry' simpleMeterRegistry (CompositeMeterRegistryConfiguration.MultipleNonPrimaryMeterRegistriesCondition)
+
+   ConfigurationPropertiesReportEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   DataJpaRepositoriesAutoConfiguration#entityManagerFactoryBootstrapExecutorCustomizer:
+      Did not match:
+         - @ConditionalOnProperty (spring.data.jpa.repositories.bootstrap-mode=deferred) did not find property 'spring.data.jpa.repositories.bootstrap-mode' (OnPropertyCondition)
+
+   DataSourceAutoConfiguration.EmbeddedDatabaseConfiguration:
+      Did not match:
+         - EmbeddedDataSource spring.datasource.url is set (DataSourceAutoConfiguration.EmbeddedDatabaseCondition)
+
+   DataSourceCheckpointRestoreConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.crac.Resource' (OnClassCondition)
+
+   DataSourceConfiguration.Dbcp2:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.commons.dbcp2.BasicDataSource' (OnClassCondition)
+
+   DataSourceConfiguration.Generic:
+      Did not match:
+         - @ConditionalOnProperty (spring.datasource.type) did not find property 'spring.datasource.type' (OnPropertyCondition)
+
+   DataSourceConfiguration.OracleUcp:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'oracle.ucp.jdbc.PoolDataSourceImpl', 'oracle.jdbc.OracleConnection' (OnClassCondition)
+
+   DataSourceConfiguration.Tomcat:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSource' (OnClassCondition)
+
+   DataSourceJmxConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jmx.enabled=true) did not find property 'spring.jmx.enabled' (OnPropertyCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.CommonsDbcp2PoolDataSourceMetadataProviderConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.commons.dbcp2.BasicDataSource' (OnClassCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.OracleUcpPoolDataSourceMetadataProviderConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'oracle.ucp.jdbc.PoolDataSource', 'oracle.jdbc.OracleConnection' (OnClassCondition)
+
+   DataSourcePoolMetadataProvidersConfiguration.TomcatDataSourcePoolMetadataProviderConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSource' (OnClassCondition)
+
+   DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration#transactionManager:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) found beans of type 'org.springframework.transaction.TransactionManager' transactionManager (OnBeanCondition)
+
+   DatadogMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.datadog.DatadogMeterRegistry' (OnClassCondition)
+
+   DispatcherServletAutoConfiguration.DispatcherServletConfiguration#multipartResolver:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans of type org.springframework.web.multipart.MultipartResolver (OnBeanCondition)
+
+   DynatraceMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.dynatrace.DynatraceMeterRegistry' (OnClassCondition)
+
+   ElasticMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.elastic.ElasticMeterRegistry' (OnClassCondition)
+
+   EnvironmentEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   GangliaMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.ganglia.GangliaMeterRegistry' (OnClassCondition)
+
+   GraphiteMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.graphite.GraphiteMeterRegistry' (OnClassCondition)
+
+   GsonHttpMessageConvertersConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.google.gson.Gson' (OnClassCondition)
+
+   HealthContributorRegistryAutoConfiguration.ReactiveHealthContributorRegistryConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'reactor.core.publisher.Flux' (OnClassCondition)
+
+   HealthEndpointReactiveWebExtensionConfiguration:
+      Did not match:
+         - did not find reactive web application classes (OnWebApplicationCondition)
+
+   HeapDumpWebEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint the configured access for endpoint 'heapdump' is NONE (OnAvailableEndpointCondition)
+
+   HibernateMetricsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.hibernate.orm.micrometer.HibernateMetrics' (OnClassCondition)
+
+   HttpExchangesEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   HumioMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.humio.HumioMeterRegistry' (OnClassCondition)
+
+   InfluxMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.influx.InfluxMeterRegistry' (OnClassCondition)
+
+   InfoContributorAutoConfiguration#buildInfoContributor:
+      Did not match:
+         - @ConditionalOnSingleCandidate (types: org.springframework.boot.info.BuildProperties; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      Matched:
+         - @ConditionalOnEnabledInfoContributor management.info.defaults.enabled is considered true (OnEnabledInfoContributorCondition)
+
+   InfoContributorAutoConfiguration#envInfoContributor:
+      Did not match:
+         - @ConditionalOnEnabledInfoContributor management.info.env.enabled is not true (OnEnabledInfoContributorCondition)
+
+   InfoContributorAutoConfiguration#gitInfoContributor:
+      Did not match:
+         - @ConditionalOnSingleCandidate (types: org.springframework.boot.info.GitProperties; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      Matched:
+         - @ConditionalOnEnabledInfoContributor management.info.defaults.enabled is considered true (OnEnabledInfoContributorCondition)
+
+   InfoContributorAutoConfiguration#javaInfoContributor:
+      Did not match:
+         - @ConditionalOnEnabledInfoContributor management.info.java.enabled is not true (OnEnabledInfoContributorCondition)
+
+   InfoContributorAutoConfiguration#osInfoContributor:
+      Did not match:
+         - @ConditionalOnEnabledInfoContributor management.info.os.enabled is not true (OnEnabledInfoContributorCondition)
+
+   InfoContributorAutoConfiguration#processInfoContributor:
+      Did not match:
+         - @ConditionalOnEnabledInfoContributor management.info.process.enabled is not true (OnEnabledInfoContributorCondition)
+
+   InfoContributorAutoConfiguration#sslInfo:
+      Did not match:
+         - @ConditionalOnEnabledInfoContributor management.info.ssl.enabled is not true (OnEnabledInfoContributorCondition)
+      Matched:
+         - @ConditionalOnMissingBean (types: org.springframework.boot.info.SslInfo; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   InfoContributorAutoConfiguration#sslInfoContributor:
+      Did not match:
+         - @ConditionalOnEnabledInfoContributor management.info.ssl.enabled is not true (OnEnabledInfoContributorCondition)
+
+   Jackson2EndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.fasterxml.jackson.databind.ObjectMapper' (OnClassCondition)
+
+   Jackson2HttpMessageConvertersConfiguration.MappingJackson2HttpMessageConverterConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.fasterxml.jackson.databind.ObjectMapper' (OnClassCondition)
+
+   Jackson2HttpMessageConvertersConfiguration.MappingJackson2XmlHttpMessageConverterConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.fasterxml.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+
+   JacksonAutoConfiguration.CborConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'tools.jackson.dataformat.cbor.CBORMapper' (OnClassCondition)
+
+   JacksonAutoConfiguration.XmlConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'tools.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+
+   JacksonHttpMessageConvertersConfiguration.JacksonXmlHttpMessageConverterConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'tools.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+
+   JmxAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jmx.enabled=true) did not find property 'spring.jmx.enabled' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.jmx.export.MBeanExporter' (OnClassCondition)
+
+   JmxEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jmx.enabled=true) did not find property 'spring.jmx.enabled' (OnPropertyCondition)
+
+   JmxMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.jmx.JmxMeterRegistry' (OnClassCondition)
+
+   JndiDataSourceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'spring.datasource.jndi-name' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+
+   JndiJtaConfiguration:
+      Did not match:
+         - @ConditionalOnJndi JNDI environment is not available (OnJndiCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.transaction.jta.JtaTransactionManager' (OnClassCondition)
+
+   JpaBaseConfiguration.JpaWebConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jpa.open-in-view=true) found different value in property 'spring.jpa.open-in-view' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+   JsonbHttpMessageConvertersConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'jakarta.json.bind.Jsonb' (OnClassCondition)
+
+   JvmMetricsAutoConfiguration.VirtualThreadMetricsConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.java21.instrument.binder.jdk.VirtualThreadMetrics' (OnClassCondition)
+
+   KairosMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.kairos.KairosMeterRegistry' (OnClassCondition)
+
+   KotlinSerializationHttpMessageConvertersConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'kotlinx.serialization.Serializable', 'kotlinx.serialization.json.Json' (OnClassCondition)
+
+   LazyConnectionDataSourceConfiguration:
+      Did not match:
+         - @ConditionalOnProperty (spring.datasource.connection-fetch=lazy) did not find property 'spring.datasource.connection-fetch' (OnPropertyCondition)
+
+   Log4J2MetricsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.apache.logging.log4j.core.LoggerContext' (OnClassCondition)
+
+   LogFileWebEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   LoggersEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   ManagementContextAutoConfiguration.DifferentManagementContextConfiguration:
+      Did not match:
+         - Management Port actual port type (SAME) did not match required type (DIFFERENT) (OnManagementPortCondition)
+
+   MessageSourceAutoConfiguration:
+      Did not match:
+         - ResourceBundle did not find bundle with basename messages (MessageSourceAutoConfiguration.ResourceBundleCondition)
+
+   MetricsAspectsAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (management.observations.annotations.enabled=true) did not find property 'management.observations.annotations.enabled' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'io.micrometer.core.instrument.MeterRegistry', 'org.aspectj.weaver.Advice' (OnClassCondition)
+
+   MetricsEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnAvailableEndpoint', 'io.micrometer.core.annotation.Timed' (OnClassCondition)
+
+   NewRelicMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.newrelic.NewRelicMeterRegistry' (OnClassCondition)
+
+   NoOpMeterRegistryConfiguration:
+      Did not match:
+         - @ConditionalOnMissingBean (types: io.micrometer.core.instrument.MeterRegistry; SearchStrategy: all) found beans of type 'io.micrometer.core.instrument.MeterRegistry' simpleMeterRegistry (OnBeanCondition)
+
+   ObservationAutoConfiguration.ObservedAspectConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (management.observations.annotations.enabled=true) did not find property 'management.observations.annotations.enabled' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.aspectj.weaver.Advice' (OnClassCondition)
+
+   OtlpMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.registry.otlp.OtlpMeterRegistry' (OnClassCondition)
+
+   ProjectInfoAutoConfiguration#buildProperties:
+      Did not match:
+         - @ConditionalOnResource did not find resource '${spring.info.build.location:classpath:META-INF/build-info.properties}' (OnResourceCondition)
+
+   ProjectInfoAutoConfiguration#gitProperties:
+      Did not match:
+         - GitResource did not find git info at classpath:git.properties (ProjectInfoAutoConfiguration.GitResourceAvailableCondition)
+
+   PrometheusMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.prometheusmetrics.PrometheusMeterRegistry' (OnClassCondition)
+
+   SbomEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   ScheduledTasksEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   ServletHttpExchangesAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.boot.actuate.web.exchanges.HttpExchangeRepository; SearchStrategy: all) did not find any beans of type org.springframework.boot.actuate.web.exchanges.HttpExchangeRepository (OnBeanCondition)
+      Matched:
+         - found 'session' scope (OnWebApplicationCondition)
+         - @ConditionalOnBooleanProperty (management.httpexchanges.recording.enabled=true) matched (OnPropertyCondition)
+
+   ServletManagementContextAutoConfiguration.ApplicationContextFilterConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (management.server.add-application-context-header=true) did not find property 'management.server.add-application-context-header' (OnPropertyCondition)
+
+   ServletWebServerConfiguration#forwardedHeaderFilter:
+      Did not match:
+         - @ConditionalOnProperty (server.forward-headers-strategy=framework) did not find property 'server.forward-headers-strategy' (OnPropertyCondition)
+
+   ShutdownEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint the configured access for endpoint 'shutdown' is NONE (OnAvailableEndpointCondition)
+
+   SpringApplicationAdminJmxAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.application.admin.enabled=true) did not find property 'spring.application.admin.enabled' (OnPropertyCondition)
+
+   StackdriverMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.stackdriver.StackdriverMeterRegistry' (OnClassCondition)
+
+   StartupEndpointAutoConfiguration:
+      Did not match:
+         - ApplicationStartup configured applicationStartup is of type class org.springframework.core.metrics.DefaultApplicationStartup, expected BufferingApplicationStartup. (StartupEndpointAutoConfiguration.ApplicationStartupCondition)
+
+   StatsdMetricsExportAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.statsd.StatsdMeterRegistry' (OnClassCondition)
+
+   TaskExecutorConfigurations.AsyncConfigurerWrapperConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.scheduling.annotation.AsyncConfigurer; SearchStrategy: all) did not find any beans of type org.springframework.scheduling.annotation.AsyncConfigurer (OnBeanCondition)
+
+   TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilderVirtualThreads:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder' simpleAsyncTaskExecutorBuilder (OnBeanCondition)
+
+   TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutorVirtualThreads:
+      Did not match:
+         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+
+   TaskExecutorConfigurations.TaskExecutorContextPropagationConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'io.micrometer.context.ContextSnapshot' (OnClassCondition)
+
+   TaskSchedulingAutoConfiguration#scheduledBeanLazyInitializationExcludeFilter:
+      Did not match:
+         - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.scheduling.config.internalScheduledAnnotationProcessor (OnBeanCondition)
+
+   TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilderVirtualThreads:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder' simpleAsyncTaskSchedulerBuilder (OnBeanCondition)
+
+   TaskSchedulingConfigurations.TaskSchedulerConfiguration:
+      Did not match:
+         - @ConditionalOnBean (names: org.springframework.scheduling.config.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.scheduling.config.internalScheduledAnnotationProcessor (OnBeanCondition)
+
+   TemplateEngineConfigurations.ReactiveTemplateEngineConfiguration:
+      Did not match:
+         - did not find reactive web application classes (OnWebApplicationCondition)
+
+   ThreadDumpEndpointAutoConfiguration:
+      Did not match:
+         - @ConditionalOnAvailableEndpoint not exposed (OnAvailableEndpointCondition)
+
+   ThymeleafAutoConfiguration.DataAttributeDialectConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect' (OnClassCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafSecurityDialectConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect', 'org.springframework.security.web.server.csrf.CsrfToken' (OnClassCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafWebFluxConfiguration:
+      Did not match:
+         - did not find reactive web application classes (OnWebApplicationCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafWebLayoutConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect' (OnClassCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafWebMvcConfiguration#resourceUrlEncodingFilter:
+      Did not match:
+         - @ConditionalOnEnabledResourceChain did not find class org.webjars.WebJarVersionLocator (OnEnabledResourceChainCondition)
+
+   TomcatReactiveManagementContextAutoConfiguration:
+      Did not match:
+         - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
+
+   TomcatReactiveWebServerAutoConfiguration:
+      Did not match:
+         - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
+
+   TomcatServletManagementContextAutoConfiguration:
+      Did not match:
+         - Management Port actual port type (SAME) did not match required type (DIFFERENT) (OnManagementPortCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextFactory' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+   TomcatServletWebServerAutoConfiguration#tomcatForwardedHeaderFilterCustomizer:
+      Did not match:
+         - @ConditionalOnProperty (server.forward-headers-strategy=framework) did not find property 'server.forward-headers-strategy' (OnPropertyCondition)
+
+   TomcatWebServerConfiguration#tomcatVirtualThreadsProtocolHandlerCustomizer:
+      Did not match:
+         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+
+   TransactionAutoConfiguration#transactionalOperator:
+      Did not match:
+         - @ConditionalOnSingleCandidate (types: org.springframework.transaction.ReactiveTransactionManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   TransactionAutoConfiguration.AspectJTransactionManagementConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.transaction.aspectj.AbstractTransactionAspect; SearchStrategy: all) did not find any beans of type org.springframework.transaction.aspectj.AbstractTransactionAspect (OnBeanCondition)
+
+   TransactionAutoConfiguration.EnableTransactionManagementConfiguration.JdkDynamicAutoProxyConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.aop.proxy-target-class=false) did not find property 'spring.aop.proxy-target-class' (OnPropertyCondition)
+
+   WebMvcAutoConfiguration#hiddenHttpMethodFilter:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.mvc.hiddenmethod.filter.enabled=true) did not find property 'spring.mvc.hiddenmethod.filter.enabled' (OnPropertyCondition)
+
+   WebMvcAutoConfiguration.ProblemDetailsErrorHandlingConfiguration#problemDetailsExceptionHandler:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler; SearchStrategy: all) found beans of type 'org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler' globalExceptionHandler (OnBeanCondition)
+
+   WebMvcAutoConfiguration.ResourceChainCustomizerConfiguration:
+      Did not match:
+         - @ConditionalOnEnabledResourceChain did not find class org.webjars.WebJarVersionLocator (OnEnabledResourceChainCondition)
+
+   WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#beanNameViewResolver:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.BeanNameViewResolver; SearchStrategy: all) found beans of type 'org.springframework.web.servlet.view.BeanNameViewResolver' beanNameViewResolver (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration#endpointJackson2ObjectMapperWebMvcConfigurer:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.boot.actuate.endpoint.jackson.EndpointJackson2ObjectMapper; SearchStrategy: all) did not find any beans of type org.springframework.boot.actuate.endpoint.jackson.EndpointJackson2ObjectMapper (OnBeanCondition)
+
+   WebMvcEndpointManagementContextConfiguration.HealthConfiguration#managementHealthEndpointWebMvcHandlerMapping:
+      Did not match:
+         - Management Port actual port type (SAME) did not match required type (DIFFERENT) (OnManagementPortCondition)
+
+   XADataSourceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.boot.jdbc.XADataSourceWrapper; SearchStrategy: all) did not find any beans of type org.springframework.boot.jdbc.XADataSourceWrapper (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'jakarta.transaction.TransactionManager', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    org.springframework.boot.health.autoconfigure.registry.HealthContributorRegistryAutoConfiguration
+
+    org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+
+    org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration
+
+    org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration
+
+    org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+
+    org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
+
+    org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration
+
+    org.springframework.boot.health.autoconfigure.contributor.HealthContributorAutoConfiguration
+
+    org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration
+
+    org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+
+    org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration
+
+
+
+2026-11-01T15:18:15.377-03:00  INFO 30576 --- [reserva-medica] [           main] c.i.r.ReservaMedicaApplication           : Started ReservaMedicaApplication in 4.285 seconds (process running for 4.623)
+2026-11-01T15:18:15.423-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2026-11-01T15:18:15.453-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        medicos
+        (especialidad, nombre, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        medicos
+        (especialidad, nombre, id) 
+    values
+        (?, ?, default)
+2026-11-01T15:18:15.458-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [Medicina General]
+2026-11-01T15:18:15.458-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Dra. Fernanda Rojas]
+2026-11-01T15:18:15.496-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        medicos
+        (especialidad, nombre, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        medicos
+        (especialidad, nombre, id) 
+    values
+        (?, ?, default)
+2026-11-01T15:18:15.496-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [Pediatría]
+2026-11-01T15:18:15.496-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Dr. Ignacio Torres]
+2026-11-01T15:18:15.499-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        medicos
+        (especialidad, nombre, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        medicos
+        (especialidad, nombre, id) 
+    values
+        (?, ?, default)
+2026-11-01T15:18:15.499-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [Dermatología]
+2026-11-01T15:18:15.499-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Dra. Carla Muñoz]
+2026-11-01T15:18:15.500-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        pacientes
+        (email, nombre, rut, telefono, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        pacientes
+        (email, nombre, rut, telefono, id) 
+    values
+        (?, ?, ?, ?, default)
+2026-11-01T15:18:15.500-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [ana.soto@mail.com]
+2026-11-01T15:18:15.500-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Ana Soto]
+2026-11-01T15:18:15.500-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (3:VARCHAR) <- [11111111-1]
+2026-11-01T15:18:15.500-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [+56911111111]
+2026-11-01T15:18:15.502-03:00 DEBUG 30576 --- [reserva-medica] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        pacientes
+        (email, nombre, rut, telefono, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        pacientes
+        (email, nombre, rut, telefono, id) 
+    values
+        (?, ?, ?, ?, default)
+2026-11-01T15:18:15.502-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [pedro.ramirez@mail.com]
+2026-11-01T15:18:15.502-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Pedro Ramírez]
+2026-11-01T15:18:15.502-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (3:VARCHAR) <- [22222222-2]
+2026-11-01T15:18:15.502-03:00 TRACE 30576 --- [reserva-medica] [           main] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [+56922222222]
+2026-11-01T15:18:15.504-03:00 DEBUG 30576 --- [reserva-medica] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-11-01T15:18:29.732-03:00  INFO 30576 --- [reserva-medica] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-01T15:18:29.732-03:00  INFO 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-01T15:18:29.732-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-11-01T15:18:29.732-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-11-01T15:18:29.732-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2fa81b23
+2026-11-01T15:18:29.732-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@64078e6a
+2026-11-01T15:18:29.733-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-11-01T15:18:29.733-03:00  INFO 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-01T15:18:29.747-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/actuator/health", parameters={}
+2026-11-01T15:18:29.752-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] s.b.w.a.e.w.WebMvcEndpointHandlerMapping : Mapped to Actuator web endpoint 'health'
+2026-11-01T15:18:29.765-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/octet-stream" to []
+2026-11-01T15:18:29.783-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+2026-11-01T15:18:29.785-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [org.springframework.boot.health.actuate.endpoint.SystemHealthDescriptor@5ab467d3]
+2026-11-01T15:18:29.848-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-01T15:18:41.661-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/actuator/health", parameters={}
+2026-11-01T15:18:41.661-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] s.b.w.a.e.w.WebMvcEndpointHandlerMapping : Mapped to Actuator web endpoint 'health'
+2026-11-01T15:18:41.661-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/octet-stream" to []
+2026-11-01T15:18:41.664-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+2026-11-01T15:18:41.664-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [org.springframework.boot.health.actuate.endpoint.SystemHealthDescriptor@53f1e725]
+2026-11-01T15:18:41.665-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-01T15:18:41.757-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/citas", parameters={}
+2026-11-01T15:18:41.758-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.CitaController#agendar(AgendarCitaRequest)
+2026-11-01T15:18:41.803-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AgendarCitaRequest[pacienteId=1, medicoId=1, fechaHora=2026-11-02T09:30, motivo=Control]]
+2026-11-01T15:18:41.848-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+2026-11-01T15:18:41.848-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:41.861-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+2026-11-01T15:18:41.861-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:41.923-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id 
+    from
+        citas c1_0 
+    where
+        c1_0.medico_id=? 
+        and c1_0.fecha_hora=? 
+        and c1_0.estado=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        c1_0.id 
+    from
+        citas c1_0 
+    where
+        c1_0.medico_id=? 
+        and c1_0.fecha_hora=? 
+        and c1_0.estado=? 
+    fetch
+        first ? rows only
+2026-11-01T15:18:41.925-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:41.925-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2026-11-02T09:30]
+2026-11-01T15:18:41.926-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:ENUM) <- [AGENDADA]
+2026-11-01T15:18:41.926-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [1]
+2026-11-01T15:18:41.928-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    insert 
+    into
+        citas
+        (estado, fecha_hora, medico_id, motivo, paciente_id, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        citas
+        (estado, fecha_hora, medico_id, motivo, paciente_id, id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2026-11-01T15:18:41.928-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [AGENDADA]
+2026-11-01T15:18:41.928-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2026-11-02T09:30]
+2026-11-01T15:18:41.928-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:BIGINT) <- [1]
+2026-11-01T15:18:41.928-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (4:VARCHAR) <- [Control]
+2026-11-01T15:18:41.928-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (5:BIGINT) <- [1]
+2026-11-01T15:18:41.934-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-01T15:18:41.934-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [CitaResponse[id=1, nombrePaciente=Ana Soto, nombreMedico=Dra. Fernanda Rojas, especialidad=Medicina  (truncated)...]
+2026-11-01T15:18:41.939-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2026-11-01T15:18:42.017-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/citas", parameters={}
+2026-11-01T15:18:42.017-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.CitaController#agendar(AgendarCitaRequest)
+2026-11-01T15:18:42.019-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AgendarCitaRequest[pacienteId=1, medicoId=1, fechaHora=2026-11-02T09:30, motivo=Control]]
+2026-11-01T15:18:42.019-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+2026-11-01T15:18:42.020-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.020-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+2026-11-01T15:18:42.020-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.022-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id 
+    from
+        citas c1_0 
+    where
+        c1_0.medico_id=? 
+        and c1_0.fecha_hora=? 
+        and c1_0.estado=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        c1_0.id 
+    from
+        citas c1_0 
+    where
+        c1_0.medico_id=? 
+        and c1_0.fecha_hora=? 
+        and c1_0.estado=? 
+    fetch
+        first ? rows only
+2026-11-01T15:18:42.022-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.023-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:TIMESTAMP) <- [2026-11-02T09:30]
+2026-11-01T15:18:42.023-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:ENUM) <- [AGENDADA]
+2026-11-01T15:18:42.023-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [1]
+2026-11-01T15:18:42.028-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler cl.ipss.reservamedica.exception.GlobalExceptionHandler#manejarHorarioNoDisponible(HorarioNoDisponibleException)
+2026-11-01T15:18:42.028-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/problem+json', given [*/*] and supported [application/problem+json]
+2026-11-01T15:18:42.030-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ProblemDetail[type='null', title='Bloque horario ocupado', status=409, detail='El médico ya tiene un (truncated)...]
+2026-11-01T15:18:42.033-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [cl.ipss.reservamedica.exception.HorarioNoDisponibleException: El médico ya tiene una cita agendada en ese bloque horario]
+2026-11-01T15:18:42.033-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 409 CONFLICT
+2026-11-01T15:18:42.110-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/citas", parameters={}
+2026-11-01T15:18:42.111-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.CitaController#agendar(AgendarCitaRequest)
+2026-11-01T15:18:42.111-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AgendarCitaRequest[pacienteId=1, medicoId=1, fechaHora=2020-01-05T09:00, motivo=Control]]
+2026-11-01T15:18:42.116-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler cl.ipss.reservamedica.exception.GlobalExceptionHandler#handleException(Exception, WebRequest)
+2026-11-01T15:18:42.117-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/problem+json', given [*/*] and supported [application/problem+json]
+2026-11-01T15:18:42.117-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ProblemDetail[type='null', title='Solicitud inválida', status=400, detail='La solicitud no pasó las  (truncated)...]
+2026-11-01T15:18:42.120-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<cl.ipss.reservamedica.dto.CitaResponse> cl.ipss.reservamedica.controller.CitaController.agendar(cl.ipss.reservamedica.dto.AgendarCitaRequest): [Field error in object 'agendarCitaRequest' on field 'fechaHora': rejected value [2020-01-05T09:00]; codes [Future.agendarCitaRequest.fechaHora,Future.fechaHora,Future.java.time.LocalDateTime,Future]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [agendarCitaRequest.fechaHora,fechaHora]; arguments []; default message [fechaHora]]; default message [la fecha debe ser futura]] ]
+2026-11-01T15:18:42.122-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2026-11-01T15:18:42.197-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/citas", parameters={}
+2026-11-01T15:18:42.197-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.CitaController#agendar(AgendarCitaRequest)
+2026-11-01T15:18:42.199-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AgendarCitaRequest[pacienteId=1, medicoId=999, fechaHora=2026-11-02T09:30, motivo=Control]]
+2026-11-01T15:18:42.199-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+2026-11-01T15:18:42.200-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.201-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+2026-11-01T15:18:42.201-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [999]
+2026-11-01T15:18:42.203-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler cl.ipss.reservamedica.exception.GlobalExceptionHandler#manejarRecursoNoEncontrado(RecursoNoEncontradoException)
+2026-11-01T15:18:42.203-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/problem+json', given [*/*] and supported [application/problem+json]
+2026-11-01T15:18:42.203-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ProblemDetail[type='null', title='Recurso no encontrado', status=404, detail='No existe el médico 99 (truncated)...]
+2026-11-01T15:18:42.204-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [cl.ipss.reservamedica.exception.RecursoNoEncontradoException: No existe el médico 999]
+2026-11-01T15:18:42.204-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2026-11-01T15:18:42.290-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/citas", parameters={}
+2026-11-01T15:18:42.291-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.CitaController#agendar(AgendarCitaRequest)
+2026-11-01T15:18:42.291-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AgendarCitaRequest[pacienteId=1, medicoId=1, fechaHora=2026-11-08T10:00, motivo=Control]]
+2026-11-01T15:18:42.291-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        pacientes p1_0 
+    where
+        p1_0.id=?
+2026-11-01T15:18:42.291-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.293-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0 
+    where
+        m1_0.id=?
+2026-11-01T15:18:42.293-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.294-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler cl.ipss.reservamedica.exception.GlobalExceptionHandler#manejarReglaNegocio(ReglaNegocioException)
+2026-11-01T15:18:42.294-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/problem+json', given [*/*] and supported [application/problem+json]
+2026-11-01T15:18:42.294-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ProblemDetail[type='null', title='Fuera de las reglas de atención', status=422, detail='Solo se atie (truncated)...]
+2026-11-01T15:18:42.296-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [cl.ipss.reservamedica.exception.ReglaNegocioException: Solo se atiende de lunes a viernes]
+2026-11-01T15:18:42.296-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 422 UNPROCESSABLE_CONTENT
+2026-11-01T15:18:42.463-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/citas/1", parameters={}
+2026-11-01T15:18:42.463-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.CitaController#obtener(Long)
+2026-11-01T15:18:42.477-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.estado,
+        c1_0.fecha_hora,
+        c1_0.medico_id,
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre,
+        c1_0.motivo,
+        c1_0.paciente_id,
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        citas c1_0 
+    join
+        pacientes p1_0 
+            on p1_0.id=c1_0.paciente_id 
+    join
+        medicos m1_0 
+            on m1_0.id=c1_0.medico_id 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.estado,
+        c1_0.fecha_hora,
+        c1_0.medico_id,
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre,
+        c1_0.motivo,
+        c1_0.paciente_id,
+        p1_0.id,
+        p1_0.email,
+        p1_0.nombre,
+        p1_0.rut,
+        p1_0.telefono 
+    from
+        citas c1_0 
+    join
+        pacientes p1_0 
+            on p1_0.id=c1_0.paciente_id 
+    join
+        medicos m1_0 
+            on m1_0.id=c1_0.medico_id 
+    where
+        c1_0.id=?
+2026-11-01T15:18:42.478-03:00 TRACE 30576 --- [reserva-medica] [nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-11-01T15:18:42.482-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-01T15:18:42.482-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [CitaResponse[id=1, nombrePaciente=Ana Soto, nombreMedico=Dra. Fernanda Rojas, especialidad=Medicina  (truncated)...]
+2026-11-01T15:18:42.482-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-01T15:18:42.547-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/medicos", parameters={}
+2026-11-01T15:18:42.547-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to cl.ipss.reservamedica.controller.MedicoController#listar(String)
+2026-11-01T15:18:42.561-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0
+Hibernate: 
+    select
+        m1_0.id,
+        m1_0.especialidad,
+        m1_0.nombre 
+    from
+        medicos m1_0
+2026-11-01T15:18:42.564-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-11-01T15:18:42.564-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [[MedicoResponse[id=1, nombre=Dra. Fernanda Rojas, especialidad=Medicina General], MedicoResponse[id= (truncated)...]
+2026-11-01T15:18:42.565-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-01T15:18:42.734-03:00  INFO 30576 --- [reserva-medica] [nio-8080-exec-7] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/v1/medicos?especialidad=Dermatolog0xeda ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:473) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:279) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1308) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2202) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:947) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:481) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74) ~[tomcat-embed-core-11.0.27.jar:11.0.27]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2026-11-01T15:18:42.806-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/actuator/health", parameters={}
+2026-11-01T15:18:42.806-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] s.b.w.a.e.w.WebMvcEndpointHandlerMapping : Mapped to Actuator web endpoint 'health'
+2026-11-01T15:18:42.807-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/octet-stream" to []
+2026-11-01T15:18:42.810-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+2026-11-01T15:18:42.810-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [org.springframework.boot.health.actuate.endpoint.SystemHealthDescriptor@6c4496db]
+2026-11-01T15:18:42.810-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-01T15:21:10.019-03:00 DEBUG 30576 --- [reserva-medica] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/actuator/mappings", parameters={}
+2026-11-01T15:21:10.019-03:00 DEBUG 30576 --- [reserva-medica] [io-8080-exec-10] s.b.w.a.e.w.WebMvcEndpointHandlerMapping : Mapped to Actuator web endpoint 'mappings'
+2026-11-01T15:21:10.019-03:00 DEBUG 30576 --- [reserva-medica] [io-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/octet-stream" to []
+2026-11-01T15:21:10.026-03:00 DEBUG 30576 --- [reserva-medica] [io-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+2026-11-01T15:21:10.026-03:00 DEBUG 30576 --- [reserva-medica] [io-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Writing [org.springframework.boot.actuate.web.mappings.MappingsEndpoint$ApplicationMappingsDescriptor@1dddd6e (truncated)...]
+2026-11-01T15:21:10.035-03:00 DEBUG 30576 --- [reserva-medica] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-11-01T15:22:05.525-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/actuator/health", parameters={}
+2026-11-01T15:22:05.526-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] s.b.w.a.e.w.WebMvcEndpointHandlerMapping : Mapped to Actuator web endpoint 'health'
+2026-11-01T15:22:05.526-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/octet-stream" to []
+2026-11-01T15:22:05.529-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+2026-11-01T15:22:05.529-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [org.springframework.boot.health.actuate.endpoint.SystemHealthDescriptor@72e31251]
+2026-11-01T15:22:05.529-03:00 DEBUG 30576 --- [reserva-medica] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:16 min
+[INFO] Finished at: 2026-11-01T15:22:24-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.1.2:run (default-cli) on project reserva-medica: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

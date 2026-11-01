@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q4-1",
+    "enunciado": "¿Por qué en CitaService declaramos los repositorios como campos private final y los recibimos en el constructor sin escribir @Autowired?",
+    "opciones": [
+      "Porque Spring inyecta automáticamente las dependencias a través del único constructor de la clase, garantizando inmutabilidad y facilitando las pruebas unitarias.",
+      "Porque en Java 21 la palabra reservada final reemplaza a la base de datos.",
+      "Porque los repositorios se instancian con new CitaRepository() dentro de cada método."
+    ],
+    "correcta": 0,
+    "explicacion": "La inyección por constructor permite que el contenedor IoC entregue las dependencias al crear el bean, asegura que las referencias sean inmutables (final) y permite instanciar la clase directamente en pruebas.",
+    "fuente": "F20"
+  },
+  {
+    "id": "q4-2",
+    "enunciado": "¿Qué hace Spring Data JPA cuando declaramos boolean existsByMedicoIdAndFechaHoraAndEstado(...) en la interfaz CitaRepository?",
+    "opciones": [
+      "Exige que escribamos manualmente un archivo XML con la sentencia SQL.",
+      "Analiza el nombre del método al arrancar y genera automáticamente la consulta SQL para comprobar si existe un registro que cumpla las tres condiciones.",
+      "Borra las citas anteriores de ese médico antes de insertar una nueva."
+    ],
+    "correcta": 1,
+    "explicacion": "Spring Data JPA ofrece derivación de consultas a partir del nombre del método sobre interfaces que extienden JpaRepository.",
+    "fuente": "F25"
+  },
+  {
+    "id": "q4-3",
+    "enunciado": "¿En qué capa debe colocarse la anotación @Transactional cuando la operación de agendar valida disponibilidad y guarda una cita?",
+    "opciones": [
+      "En el record AgendarCitaRequest, para que el JSON sea transaccional.",
+      "En el archivo application.properties.",
+      "En el método agendar de CitaService, para que las comprobaciones y el guardado se ejecuten como una unidad atómica de negocio."
+    ],
+    "correcta": 2,
+    "explicacion": "Los límites transaccionales corresponden a la capa de servicio (@Service), donde se coordinan una o más operaciones de datos bajo una misma regla de negocio.",
+    "fuente": "F20"
+  }
+]

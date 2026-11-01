@@ -1,0 +1,15 @@
+flowchart TB
+    classDef ds fill:#FFFFFF,color:#16302B,stroke:#D99A00,stroke-width:3px
+    classDef co fill:#FFFFFF,color:#16302B,stroke:#2F6BDB,stroke-width:3px
+    classDef ok fill:#FFFFFF,color:#16302B,stroke:#17794F,stroke-width:2px
+    classDef er fill:#FFFFFF,color:#16302B,stroke:#9A4412,stroke-width:2px
+
+    IN["Petición HTTP<br/>POST /api/v1/citas"]:::ds -->|"entra a"| HM["1. HandlerMapping<br/>RequestMappingHandlerMapping"]:::ds
+    HM -->|"selecciona cadena"| HI["2. HandlerInterceptor<br/>preHandle / postHandle"]:::ds
+    HI -->|"pasa a"| HA["3. HandlerAdapter<br/>RequestMappingHandlerAdapter"]:::ds
+    HA -->|"convierte JSON y @Valid"| AR["4. ArgumentResolver +<br/>HttpMessageConverter (Jackson)"]:::ds
+    AR -->|"invoca"| MC["5. Método controlador<br/>CitaController#agendar"]:::co
+    MC -->|"retorna ResponseEntity"| RV["6. ReturnValueHandler +<br/>HttpMessageConverter"]:::ok
+    RV -->|"escribe cuerpo"| OUT["Respuesta HTTP<br/>201 Created JSON"]:::ok
+    AR -.->|"si falla @Valid o negocio"| EX["7. HandlerExceptionResolver<br/>@RestControllerAdvice (ProblemDetail)"]:::er
+    EX -.->|"responde 400 / 404 / 409"| OUT

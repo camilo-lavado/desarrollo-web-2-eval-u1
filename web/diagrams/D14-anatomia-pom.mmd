@@ -1,0 +1,23 @@
+flowchart TD
+    classDef centro fill:#0B6E5F,color:#FFFFFF,stroke:#0B6E5F,stroke-width:2px
+    classDef node fill:#FFFFFF,color:#16302B,stroke:#0B6E5F,stroke-width:2px
+
+    POM["pom.xml<br/>cl.ipss:reserva-medica"]:::centro
+    PAR["spring-boot-starter-parent<br/>versión 4.1.2"]:::node
+    BOM["spring-boot-dependencies<br/>(Bill of Materials)"]:::node
+    PRP["Propiedades<br/>java.version = 21"]:::node
+    STW["Starters compile<br/>webmvc, data-jpa, validation, actuator"]:::node
+    DRV["Conectores runtime<br/>h2, postgresql, spring-boot-h2console"]:::node
+    TST["Starters test<br/>webmvc-test, data-jpa-test"]:::node
+    PLG["spring-boot-maven-plugin"]:::node
+    JAR["JAR ejecutable autónomo<br/>con Tomcat 11 embebido"]:::node
+
+    POM -->|"hereda de"| PAR
+    PAR -->|"importa"| BOM
+    BOM -->|"alinea versiones sin conflictos de"| STW
+    POM -->|"fija versión de Java en"| PRP
+    POM -->|"declara para compilar"| STW
+    POM -->|"aísla en ejecución"| DRV
+    POM -->|"verifica con"| TST
+    POM -->|"construye con"| PLG
+    PLG -->|"reempaqueta en"| JAR

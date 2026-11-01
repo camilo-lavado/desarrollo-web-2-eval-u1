@@ -1,0 +1,26 @@
+flowchart TD
+    classDef co fill:#FFFFFF,color:#16302B,stroke:#2F6BDB,stroke-width:3px
+    classDef se fill:#FFFFFF,color:#16302B,stroke:#1F9D6B,stroke-width:3px
+    classDef re fill:#FFFFFF,color:#16302B,stroke:#E4572E,stroke-width:3px
+    classDef mo fill:#FFFFFF,color:#16302B,stroke:#3A4650,stroke-width:3px
+    classDef er fill:#FFFFFF,color:#16302B,stroke:#D99A00,stroke-width:3px
+
+    RC["@RestController<br/>CitaController"]:::co
+    MP["@RequestMapping / @PostMapping<br/>@GetMapping"]:::co
+    VL["@RequestBody + @Valid<br/>AgendarCitaRequest (@NotNull, @Future)"]:::co
+    SV["@Service<br/>CitaService"]:::se
+    TX["@Transactional<br/>demarcación ACID"]:::se
+    RP["JpaRepository (@Repository)<br/>CitaRepository"]:::re
+    EN["@Entity + @Table<br/>Cita, Medico, Paciente"]:::mo
+    ID["@Id + @GeneratedValue<br/>@ManyToOne (FetchType.LAZY)"]:::mo
+    AD["@RestControllerAdvice<br/>GlobalExceptionHandler (@ExceptionHandler)"]:::er
+
+    RC -->|"mapea rutas con"| MP
+    MP -->|"deserializa y valida con"| VL
+    RC -->|"delega lógica en"| SV
+    SV -->|"ejecuta en transacción con"| TX
+    SV -->|"consulta y guarda mediante"| RP
+    RP -->|"opera sobre entidades con"| EN
+    EN -->|"define clave y relaciones con"| ID
+    SV -.->|"lanza excepciones capturadas por"| AD
+    VL -.->|"si falla formato notifica a"| AD

@@ -1,0 +1,7 @@
+flowchart TB
+    classDef base fill:#FFFFFF,color:#16302B,stroke:#0B6E5F,stroke-width:2px
+    A["1. Starter en pom.xml<br/>spring-boot-starter-webmvc"]:::base -->|"descarga con BOM"| B["2. Librerías en classpath<br/>Tomcat 11, Spring MVC, Jackson 3"]:::base
+    B -->|"habilita chequeo"| C["3. Condiciones evaluadas<br/>@ConditionalOnClass / @ConditionalOnMissingBean"]:::base
+    C -->|"activa"| D["4. Clases @AutoConfiguration<br/>listadas en AutoConfiguration.imports"]:::base
+    D -->|"registra"| E["5. Beans por defecto<br/>DispatcherServlet, DataSource, JsonMapper"]:::base
+    E -->|"¿bean o propiedad propia?"| F["6. Ajuste o back-off<br/>application.properties o @Bean propio"]:::base

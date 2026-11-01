@@ -1,0 +1,47 @@
+---
+export interface FuenteItem {
+  id: string;
+  autor: string;
+  titulo: string;
+  url: string;
+  estado?: string;
+}
+
+export interface Props {
+  titulo?: string;
+  abiertaPorDefecto?: boolean;
+  fuentes?: FuenteItem[];
+}
+
+const {
+  titulo = 'Ficha técnica',
+  abiertaPorDefecto = false,
+  fuentes = [],
+} = Astro.props;
+---
+
+<details class="ficha" open={abiertaPorDefecto}>
+  <summary>{titulo}</summary>
+  <div class="fcont">
+    <slot />
+    {
+      fuentes.length > 0 && (
+        <div class="refs">
+          <strong>Fuentes consultadas en este tema:</strong>
+          <ul style="margin: 6px 0 0; padding-left: 1.2rem;">
+            {fuentes.map((f) => (
+              <li>
+                <span style="font-family: var(--mono); font-size: 0.78rem;">[{f.id}]</span>{' '}
+                {f.autor} — <i>{f.titulo}</i>.{' '}
+                <a href={f.url} target="_blank" rel="noopener noreferrer">
+                  {f.url}
+                </a>
+                {f.estado && f.estado !== 'leída' ? ` (${f.estado})` : ''}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</details>

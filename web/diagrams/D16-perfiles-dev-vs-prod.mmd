@@ -1,0 +1,25 @@
+flowchart TB
+    classDef base fill:#FFFFFF,color:#16302B,stroke:#0B6E5F,stroke-width:2px
+    classDef dev fill:#FFFFFF,color:#16302B,stroke:#2F6BDB,stroke-width:3px
+    classDef prod fill:#FFFFFF,color:#16302B,stroke:#1F9D6B,stroke-width:3px
+
+    APP["application.properties (base)<br/>spring.application.name=reserva-medica<br/>spring.jpa.open-in-view=false"]:::base
+
+    subgraph SDEV["Perfil dev (application-dev.properties)"]
+        D1["Base en memoria H2<br/>jdbc:h2:mem:reservamedica"]:::dev
+        D2["Esquema automático<br/>ddl-auto = create-drop"]:::dev
+        D3["Depuración activa<br/>show-sql = true · /h2-console = true"]:::dev
+    end
+
+    subgraph SPROD["Perfil prod (application-prod.properties)"]
+        P1["Base persistente PostgreSQL<br/>url = ${DB_URL}"]:::prod
+        P2["Secretos en variables de entorno<br/>username = ${DB_USER} · password = ${DB_PASSWORD}"]:::prod
+        P3["Protección de datos<br/>ddl-auto = validate · show-sql = false"]:::prod
+    end
+
+    APP -->|"spring.profiles.active=dev"| D1
+    D1 --- D2
+    D2 --- D3
+    APP -->|"spring.profiles.active=prod"| P1
+    P1 --- P2
+    P2 --- P3

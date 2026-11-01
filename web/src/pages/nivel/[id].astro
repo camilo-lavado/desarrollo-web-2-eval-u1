@@ -1,0 +1,421 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FichaTecnica from '../../components/FichaTecnica.astro';
+import Figura from '../../components/Figura.astro';
+import Cuestionario, { type PreguntaItem } from '../../components/Cuestionario';
+import Simulador from '../../components/Simulador';
+import LabConfig from '../../components/LabConfig';
+import { getEntry, render } from 'astro:content';
+import fuentesAll from '../../data/fuentes.json';
+
+import p1 from '../../data/preguntas/nivel-1.json';
+import p2 from '../../data/preguntas/nivel-2.json';
+import p3 from '../../data/preguntas/nivel-3.json';
+import p4 from '../../data/preguntas/nivel-4.json';
+import p5 from '../../data/preguntas/nivel-5.json';
+import p6 from '../../data/preguntas/nivel-6.json';
+
+import d01Raw from '../../../diagrams/D01-cadena-starter-a-bean.mmd?raw';
+import d08Raw from '../../../diagrams/D08-figura1-cinco-capas.mmd?raw';
+import d09Raw from '../../../diagrams/D09-secuencia-post-citas.mmd?raw';
+import d10Raw from '../../../diagrams/D10-interior-dispatcherservlet.mmd?raw';
+import d13Raw from '../../../diagrams/D13-arranque-vs-peticion.mmd?raw';
+import d14Raw from '../../../diagrams/D14-anatomia-pom.mmd?raw';
+import d16Raw from '../../../diagrams/D16-perfiles-dev-vs-prod.mmd?raw';
+import d18Raw from '../../../diagrams/D18-anotaciones-por-capa.mmd?raw';
+import d22Raw from '../../../diagrams/D22-entidad-vs-dto.mmd?raw';
+
+import evMappingsRaw from '../../data/evidencia/mappings.txt?raw';
+import ev200CitaRaw from '../../data/evidencia/http-200-cita.txt?raw';
+import ev200MedicosRaw from '../../data/evidencia/http-200-medicos.txt?raw';
+import ev200MedicosFiltroRaw from '../../data/evidencia/http-200-medicos-filtro.txt?raw';
+import evJunitRaw from '../../data/evidencia/junit-resumen.txt?raw';
+import evActuatorRaw from '../../data/evidencia/actuator-health.json?raw';
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { id: '1' },
+      props: {
+        nivel: 1,
+        titulo: 'El motor oculto',
+        subtitulo: 'IoC, inyección de dependencias, starters y autoconfiguración condicional',
+        pauta: 'Fase 1 de la pauta — Arquitectura y funcionamiento interno de Spring Boot',
+        xp: 10,
+      },
+    },
+    {
+      params: { id: '2' },
+      props: {
+        nivel: 2,
+        titulo: 'Sigue a la petición',
+        subtitulo: 'Del clic de Ana a la fila en CITAS y de vuelta como HTTP 201 Created',
+        pauta: 'Fase 1 de la pauta — Flujo completo de una petición HTTP por las cinco paradas',
+        xp: 25,
+      },
+    },
+    {
+      params: { id: '3' },
+      props: {
+        nivel: 3,
+        titulo: 'La sala de máquinas',
+        subtitulo: 'application.properties vs .yml, perfiles dev/prod y anatomía de pom.xml',
+        pauta: 'Fase 2 de la pauta — Configuración de proyectos y gestión de dependencias Maven',
+        xp: 25,
+      },
+    },
+    {
+      params: { id: '4' },
+      props: {
+        nivel: 4,
+        titulo: 'El código por dentro',
+        subtitulo: 'Anotaciones por capa y las cinco piezas reales del dominio clínico',
+        pauta: 'Fase 2 de la pauta — Análisis de código real en arquitectura de capas',
+        xp: 25,
+      },
+    },
+    {
+      params: { id: '5' },
+      props: {
+        nivel: 5,
+        titulo: 'Buenas prácticas y errores reales',
+        subtitulo: 'Inyección por constructor, records DTO, ProblemDetail RFC 9457 y errores clásicos',
+        pauta: 'Fase 3 de la pauta — Buenas prácticas de diseño y errores frecuentes',
+        xp: 10,
+      },
+    },
+    {
+      params: { id: '6' },
+      props: {
+        nivel: 6,
+        titulo: 'El radar 2026',
+        subtitulo: 'Spring Boot 4, Java 21 Virtual Threads, Records, Actuator y rol humano',
+        pauta: 'Fase 3 de la pauta — Tendencias actuales y juicio ingenieril frente a la IA',
+        xp: 10,
+      },
+    },
+  ];
+}
+
+const { nivel, titulo, subtitulo, pauta, xp } = Astro.props;
+const collectionName = `nivel-${nivel}` as
+  | 'nivel-1'
+  | 'nivel-2'
+  | 'nivel-3'
+  | 'nivel-4'
+  | 'nivel-5'
+  | 'nivel-6';
+
+const aprendeEntry = await getEntry(collectionName, 'aprende');
+const fichaEntry = await getEntry(collectionName, 'ficha');
+
+const { Content: AprendeContent } = aprendeEntry ? await render(aprendeEntry) : { Content: null };
+const { Content: FichaContent } = fichaEntry ? await render(fichaEntry) : { Content: null };
+
+const idsFuentesNivel: string[] = Array.isArray((fichaEntry?.data as any)?.fuentes)
+  ? (fichaEntry?.data as any).fuentes
+  : [];
+const fuentesNivel = fuentesAll.filter((f) => idsFuentesNivel.includes(f.id));
+const tituloFicha =
+  (fichaEntry?.data as any)?.titulo || `Ficha técnica · Tema ${nivel}: ${titulo}`;
+
+const preguntasPorNivel: Record<number, PreguntaItem[]> = {
+  1: p1,
+  2: p2,
+  3: p3,
+  4: p4,
+  5: p5,
+  6: p6,
+};
+const preguntas = preguntasPorNivel[nivel] || [];
+
+// 6. junit-resumen.txt: mostrar solo las líneas [INFO] finales (6 pruebas, BUILD SUCCESS)
+const junitSoloInfo = evJunitRaw
+  .split(/\r?\n/)
+  .filter((linea) => linea.trim().startsWith('[INFO]'))
+  .join('\n');
+
+// 5. actuator-health.json: ocultar diskSpace.details.path (ruta local) con etiqueta "ruta local omitida"
+let actuatorSanitizado = evActuatorRaw.trim();
+try {
+  const parsed = JSON.parse(evActuatorRaw);
+  if (parsed?.components?.diskSpace?.details?.path) {
+    parsed.components.diskSpace.details.path = '<ruta local omitida>';
+  }
+  actuatorSanitizado = JSON.stringify(parsed, null, 2);
+} catch {
+  actuatorSanitizado = evActuatorRaw.replace(/"path"\s*:\s*"[^"]*"/, '"path": "<ruta local omitida>"');
+}
+
+const prevNivel = nivel > 1 ? `/nivel/${nivel - 1}` : '/';
+const nextNivel = nivel < 6 ? `/nivel/${nivel + 1}` : '/cierre';
+---
+
+<BaseLayout title={`Tema ${nivel}: ${titulo}`}>
+  <section class="nivel">
+    <div class="wrap">
+      {/* Barra de navegación técnica y migas de pan */}
+      <div class="nivel-subbar">
+        <nav class="breadcrumbs" aria-label="Ruta de navegación">
+          <a href="/">Inicio</a>
+          <span class="bc-sep">/</span>
+          <a href="/#trilha">Catálogo</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current" aria-current="page">Tema {nivel}</span>
+        </nav>
+        <div class="subbar-actions">
+          <span class="reading-time">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            ~5 min de estudio técnico
+          </span>
+          <a href={prevNivel} class="subbar-nav-btn" title="Tema anterior">← Ant</a>
+          <span class="subbar-turn-badge">0{nivel} / 06</span>
+          <a href={nextNivel} class="subbar-nav-btn" title="Siguiente tema">Sig →</a>
+        </div>
+      </div>
+
+      <header class="nivel-header">
+        <span class="num">0{nivel}</span>
+        <div style="flex: 1;">
+          <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 4px;">{titulo}</h1>
+          <p style="margin: 0; color: var(--muted);">{subtitulo}</p>
+        </div>
+        <div class="row" style="margin: 0;">
+          <span class="tag">{pauta}</span>
+        </div>
+      </header>
+
+      <!-- 1. Aprende (columna única centrada, lectura cómoda) -->
+      <section class="panel aprende-panel" style="margin-bottom: 24px;">
+        <h2 style="font-size: 1.35rem; margin: 0 0 16px;">Aprende</h2>
+        <div class="aprende-content">
+          {AprendeContent && <AprendeContent />}
+        </div>
+      </section>
+
+      <!-- 2. Laboratorio / Simulador interactivo -->
+      {
+        nivel === 2 && (
+          <div style="margin-bottom: 24px;">
+            <Simulador client:load />
+            <div class="panel" style="margin-top: 16px;">
+              <h3 style="margin: 0 0 12px; font-size: 1.05rem;">
+                Rutas y respuestas capturadas en vivo
+              </h3>
+              <details style="margin-bottom: 10px;">
+                <summary style="cursor: pointer; font-weight: 600; font-size: 0.88rem;">
+                  Ver rutas registradas por DispatcherServlet (mappings.txt)
+                </summary>
+                <pre style="margin-top: 8px;">{evMappingsRaw.trim()}</pre>
+              </details>
+              <details style="margin-bottom: 10px;">
+                <summary style="cursor: pointer; font-weight: 600; font-size: 0.88rem;">
+                  Ver GET /api/v1/citas/1 → HTTP 200 OK
+                </summary>
+                <pre style="margin-top: 8px;">{ev200CitaRaw.trim()}</pre>
+              </details>
+              <details>
+                <summary style="cursor: pointer; font-weight: 600; font-size: 0.88rem;">
+                  Ver GET /api/v1/medicos y filtro por especialidad
+                </summary>
+                <pre style="margin-top: 8px;">{`${ev200MedicosRaw.trim()}\n\n${ev200MedicosFiltroRaw.trim()}`}</pre>
+              </details>
+            </div>
+          </div>
+        )
+      }
+
+      {
+        nivel === 3 && (
+          <div style="margin-bottom: 24px;">
+            <LabConfig client:load />
+          </div>
+        )
+      }
+
+      {
+        nivel === 4 && (
+          <div class="panel" style="margin-bottom: 24px;">
+            <div class="row" style="justify-content: space-between; margin-top: 0;">
+              <h3 style="margin: 0; font-size: 1.05rem;">
+                Resumen de pruebas JUnit 5 (6 pruebas ejecutadas, 0 fallos)
+              </h3>
+              <span class="tag" style="border-color: var(--ok); color: var(--ok);">
+                web/src/data/evidencia/junit-resumen.txt
+              </span>
+            </div>
+            <details style="margin-top: 10px;">
+              <summary style="cursor: pointer; font-weight: 600; font-size: 0.88rem;">
+                Ver salida de pruebas JUnit 5
+              </summary>
+              <pre style="margin-top: 8px;">{junitSoloInfo}</pre>
+            </details>
+          </div>
+        )
+      }
+
+      {
+        nivel === 6 && (
+          <div class="panel" style="margin-bottom: 24px;">
+            <div class="row" style="justify-content: space-between; margin-top: 0;">
+              <h3 style="margin: 0; font-size: 1.05rem;">
+                Respuesta de Spring Boot Actuator (/actuator/health)
+              </h3>
+              <span class="tag">ruta local omitida</span>
+            </div>
+            <details style="margin-top: 10px;">
+              <summary style="cursor: pointer; font-weight: 600; font-size: 0.88rem;">
+                Ver respuesta JSON de Actuator
+              </summary>
+              <pre style="margin-top: 8px;">{actuatorSanitizado}</pre>
+            </details>
+          </div>
+        )
+      }
+
+      <!-- 3. Cuestionario de comprobación -->
+      <div style="margin-bottom: 24px;">
+        <Cuestionario
+          client:load
+          nivel={nivel}
+          titulo={`Preguntas de comprobación · Tema ${nivel}`}
+          preguntas={preguntas}
+        />
+      </div>
+
+      <!-- Figuras de cada tema, pre-renderizadas a SVG en /diagramas/ -->
+      {
+        nivel === 1 && (
+          <Figura
+            numero={1}
+            titulo="Cadena causal desde el starter en pom.xml hasta el bean listo en ApplicationContext"
+            lectura="1) pom.xml declara spring-boot-starter-data-jpa; 2) Maven descarga Hibernate 7.4.13.Final y HikariCP 7.0.2 al classpath; 3) @SpringBootApplication dispara @EnableAutoConfiguration; 4) AutoConfiguration.imports propone DataSourceAutoConfiguration; 5) se evalúan @ConditionalOnClass y @ConditionalOnMissingBean; 6) el ApplicationContext registra el DataSource listo para inyectar."
+            fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-a, s. f.-t) y código en backend/."
+            alt="Diagrama de flujo vertical de seis pasos desde el starter en pom.xml hasta el bean registrado en ApplicationContext."
+            svgSrc="/diagramas/D01.svg"
+            mermaidCode={d01Raw}
+          />
+        )
+      }
+
+      {
+        nivel === 2 && (
+          <>
+            <Figura
+              numero={2}
+              titulo="Recorrido completo de una petición HTTP por las cinco paradas de la arquitectura en capas"
+              lectura="1) Ana envía POST /api/v1/citas desde el cliente; 2) Tomcat 11.0.27 y el DispatcherServlet reciben la petición y localizan el handler; 3) CitaController valida @Valid AgendarCitaRequest; 4) CitaService aplica las reglas RN-01 a RN-04 dentro de @Transactional; 5) CitaRepository y Hibernate ejecutan el INSERT en la tabla CITAS y la respuesta regresa como CitaResponse con estado 201 Created."
+              fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-h, s. f.-m) y paquete cl.ipss.reservamedica en backend/."
+              alt="Diagrama de flujo por subgrafos mostrando el viaje de ida y vuelta de POST /api/v1/citas a través de Cliente, DispatcherServlet, CitaController, CitaService, CitaRepository y Base de Datos."
+              svgSrc="/diagramas/D08.svg"
+              mermaidCode={d08Raw}
+            />
+
+            <Figura
+              numero={3}
+              titulo="Diagrama de secuencia UML de POST /api/v1/citas con camino feliz (201) y alternativas de error (400, 404, 409)"
+              lectura="1) Muestra la línea de vida desde Ana hasta la base de datos H2/PostgreSQL; 2) el bloque alt separa la creación exitosa (201 Created) de los desvíos hacia GlobalExceptionHandler cuando el horario está ocupado (409), el médico no existe (404) o falla @Valid (400)."
+              fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-j, s. f.-m) y CitaController, CitaService y GlobalExceptionHandler en backend/."
+              alt="Diagrama de secuencia UML con bloques alternativos para códigos HTTP 201, 409, 404 y 400."
+              svgSrc="/diagramas/D09.svg"
+              mermaidCode={d09Raw}
+            />
+
+            <Figura
+              numero={4}
+              titulo="Interior del DispatcherServlet: de los bytes HTTP al método Java y de vuelta a JSON"
+              lectura="1) Tomcat asigna un hilo y entrega HttpServletRequest al DispatcherServlet; 2) RequestMappingHandlerMapping busca el método anotado con @PostMapping; 3) RequestMappingHandlerAdapter usa Jackson 3 (tools.jackson) para deserializar el JSON a AgendarCitaRequest y ejecuta @Valid; 4) tras invocar CitaController.agendar(), serializa CitaResponse o delega cualquier excepción a @RestControllerAdvice."
+              fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-h, s. f.-m)."
+              alt="Diagrama interno del DispatcherServlet detallando HandlerMapping, HandlerAdapter, Jackson y ExceptionResolver."
+              svgSrc="/diagramas/D10.svg"
+              mermaidCode={d10Raw}
+            />
+
+            <Figura
+              numero={5}
+              titulo="Qué ocurre una sola vez al arrancar la aplicación frente a qué ocurre en cada petición HTTP"
+              lectura="1) A la izquierda, durante el arranque (3,661 s en dev), Spring Boot escanea el classpath, evalúa @Conditional, crea los beans singletons y compila los metadatos de rutas; 2) a la derecha, cada petición HTTP reutiliza esos mismos singletons en milisegundos creando únicamente objetos efímeros por solicitud (AgendarCitaRequest, Cita, CitaResponse)."
+              fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-a, s. f.-l) y arranque.log de backend/."
+              alt="Comparativa visual entre la fase de arranque único (creación de singletons) y la fase por cada petición HTTP (reuso de singletons)."
+              svgSrc="/diagramas/D13.svg"
+              mermaidCode={d13Raw}
+            />
+          </>
+        )
+      }
+
+      {
+        nivel === 3 && (
+          <>
+            <Figura
+              numero={6}
+              titulo="Anatomía del pom.xml de backend/: herencia del parent POM y árbol de dependencias"
+              lectura="1) spring-boot-starter-parent:4.1.2 gobierna las versiones compatibles mediante su BOM; 2) el proyecto cl.ipss:reserva-medica declara starters sin número de versión; 3) cada starter despliega sus librerías transitivas (Tomcat 11.0.27 + Jackson 3.1.7 + Spring MVC, Hibernate 7.4.13.Final + HikariCP 7.0.2, Hibernate Validator 9.1.5.Final, Actuator y drivers H2 2.4.240 / PostgreSQL 42.7.14)."
+              fuente="Elaboración propia a partir de backend/pom.xml, dependency-tree.txt y Spring Boot Team (2025a)."
+              alt="Árbol jerárquico del archivo pom.xml mostrando el parent POM, los starters declarados y sus dependencias transitivas."
+              svgSrc="/diagramas/D14.svg"
+              mermaidCode={d14Raw}
+            />
+
+            <Figura
+              numero={7}
+              titulo="Conmutación de perfiles dev vs prod sobre un único artefacto compilado"
+              lectura="1) application.properties define el nombre de la aplicación y el perfil por defecto; 2) al activar dev se levanta H2 en memoria con ddl-auto=create-drop y consola H2 activa; 3) al activar prod se conecta a PostgreSQL con ddl-auto=validate, consola H2 apagada y credenciales leídas desde variables de entorno."
+              fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-a, s. f.-u) y application*.properties en backend/."
+              alt="Diagrama comparativo del perfil dev con H2 en memoria frente al perfil prod con PostgreSQL y variables de entorno."
+              svgSrc="/diagramas/D16.svg"
+              mermaidCode={d16Raw}
+            />
+          </>
+        )
+      }
+
+      {
+        nivel === 4 && (
+          <Figura
+            numero={8}
+            titulo="Mapa de anotaciones de Spring Boot, Bean Validation y JPA ubicadas en su capa"
+            lectura="1) Arriba, @SpringBootApplication gobierna el arranque; 2) en Presentación viven @RestController, @RequestMapping, @PostMapping, @Valid y @RestControllerAdvice; 3) en Servicio residen @Service y @Transactional; 4) en Persistencia actúa @Repository; 5) en Modelo/Entidad se ubican @Entity, @Table, @Id, @GeneratedValue y @ManyToOne."
+            fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-f, s. f.-l, s. f.-p) y clases de cl.ipss.reservamedica."
+            alt="Mapa de cinco bloques que agrupa cada anotación de Spring y Jakarta EE dentro de su capa correspondiente."
+            svgSrc="/diagramas/D18.svg"
+            mermaidCode={d18Raw}
+          />
+        )
+      }
+
+      {
+        nivel === 5 && (
+          <Figura
+            numero={9}
+            titulo="Por qué nunca se expone la entidad @Entity en la API y se filtra mediante un record DTO"
+            lectura="1) La entidad Cita y Paciente contienen atributos internos (RUT, teléfono, correo) y relaciones perezosas (@ManyToOne LAZY); 2) exponerla directamente provoca fuga de datos, acoplamiento con el esquema de base de datos y LazyInitializationException; 3) CitaController y CitaService transforman la entidad en el record inmutable CitaResponse con solo los seis campos públicos."
+            fuente="Elaboración propia a partir de VMware/Broadcom (s. f.-j, s. f.-p) y Cita.java, CitaResponse.java y CitaService.java en backend/."
+            alt="Diagrama que contrasta la exposición insegura de la entidad JPA frente a la transformación segura en CitaResponse record."
+            svgSrc="/diagramas/D22.svg"
+            mermaidCode={d22Raw}
+          />
+        )
+      }
+
+      <!-- Ficha técnica para el informe -->
+      <FichaTecnica titulo={tituloFicha} fuentes={fuentesNivel}>
+        {FichaContent && <FichaContent />}
+      </FichaTecnica>
+
+      <!-- Navegación inferior entre temas -->
+      <nav class="nivel-nav" aria-label="Navegación entre temas">
+        <a href={prevNivel} class="btn sec">
+          ← {nivel > 1 ? `Tema ${nivel - 1}` : 'Volver a Portada'}
+        </a>
+        <span class="contador">Tema {nivel} de 6</span>
+        <a href={nextNivel} class="btn">
+          {nivel < 6 ? `Siguiente: Tema ${nivel + 1} →` : 'Ir a Mapa Global y Cierre →'}
+        </a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

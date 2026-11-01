@@ -1,0 +1,20 @@
+flowchart TB
+    classDef arr fill:#FFFFFF,color:#16302B,stroke:#0B6E5F,stroke-width:2px
+    classDef pet fill:#FFFFFF,color:#16302B,stroke:#2F6BDB,stroke-width:2px
+
+    subgraph S1["CARRIL 1: Al arrancar la clínica (ocurre una sola vez)"]
+        A1["1. SpringApplication.run<br/>prepara Environment y perfiles"]:::arr --> A2["2. Evalúa @ConditionalOn...<br/>y escanea @ComponentScan"]:::arr
+        A2 --> A3["3. Instancia beans singleton<br/>e inyecta por constructor"]:::arr
+        A3 --> A4["4. Construye tabla de rutas en<br/>RequestMappingHandlerMapping"]:::arr
+        A4 --> A5["5. Inicia pool HikariCP y<br/>Tomcat 11 en puerto 8080"]:::arr
+    end
+
+    subgraph S2["CARRIL 2: En cada petición HTTP (se repite por paciente)"]
+        P1["1. Tomcat asigna hilo a<br/>POST /api/v1/citas"]:::pet --> P2["2. DispatcherServlet consulta<br/>en memoria el mapa de rutas"]:::pet
+        P2 --> P3["3. Jackson convierte JSON a DTO<br/>y @Valid revisa formato"]:::pet
+        P3 --> P4["4. CitaController -> CitaService<br/>-> CitaRepository (SQL)"]:::pet
+        P4 --> P5["5. Convierte Entidad a CitaResponse<br/>y serializa JSON de salida"]:::pet
+    end
+
+    A4 -.->|"deja listo en memoria"| P2
+    A5 -.->|"presta conexiones a"| P4
