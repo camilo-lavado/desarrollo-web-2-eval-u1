@@ -2,7 +2,7 @@
 nivel: 1
 titulo: "Ficha técnica · El motor de Spring Boot: auto-configuración, IoC/DI y Tomcat embebido"
 criterio: "Criterio 1: comprensión (20 pts)"
-fuentes: ["F01", "F02", "F05", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F26", "F27", "F28"]
+fuentes: ["F01", "F02", "F05", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F26", "F27", "F28", "F29", "F30", "F31", "F32"]
 ---
 
 ### 1. ¿Qué hace internamente `@SpringBootApplication` al iniciar?

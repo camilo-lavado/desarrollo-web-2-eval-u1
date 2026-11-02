@@ -25,6 +25,21 @@ En el proyecto de reserva médica, Spring Boot resuelve la infraestructura base 
 | Conversión y validación | Parsear JSON y comprobar reglas manualmente | Conversión con Jackson 3 y validación con `@Valid` |
 | Formato de errores | Armar estructuras de error propietarias en cada ruta | Respuestas estandarizadas RFC 9457 con `ProblemDetail` |
 
+### ¿Y frente a otro framework? Un comparativo con Laravel
+
+Laravel es un framework web hecho en PHP ([Laravel, s. f.-c](/fuentes#F29)). Lo elegí para comparar porque resuelve problemas parecidos a los de Spring Boot. La tabla usa solo lo que dice la documentación de cada uno (Laravel 13.x) y no mide rendimiento.
+
+| Aspecto | Spring Boot (mi proyecto) | Laravel |
+|---|---|---|
+| Lenguaje | Java 21 | PHP ([Laravel, s. f.-c](/fuentes#F29)) |
+| Crear el proyecto | Spring Initializr y Maven, con el archivo `pom.xml` ([VMware/Broadcom, s. f.-d](/fuentes#F05)) | Comando `laravel new example-app`; los paquetes se agregan con Composer ([Laravel, s. f.-c](/fuentes#F29)) |
+| Servidor | Tomcat viene dentro del programa ([VMware/Broadcom, s. f.-i](/fuentes#F18)) | Servidor local de desarrollo con `composer run dev`; en producción se sirve desde el directorio web de un servidor web ([Laravel, s. f.-c](/fuentes#F29)) |
+| Acceso a datos | Entidad `@Entity` y repositorio de Spring Data JPA | Eloquent: cada tabla tiene un «Modelo» que sirve para consultar, insertar, actualizar y borrar ([Laravel, s. f.-b](/fuentes#F31)) |
+| Validación | `@Valid` con anotaciones en el *record*; error 400 con `ProblemDetail` | `validate()` o un *Form Request*; si la petición es XHR responde JSON con código 422 ([Laravel, s. f.-d](/fuentes#F32)) |
+| Configuración por entorno | `application.properties` y perfiles `dev` y `prod`, con claves como `${DB_PASSWORD}` ([VMware/Broadcom, s. f.-u](/fuentes#F19)) | Archivo `.env` que no se sube al control de código, y carpeta `config` ([Laravel, s. f.-a](/fuentes#F30)) |
+
+Los dos resuelven lo repetitivo: configuración por entorno, inyección de dependencias, acceso a datos y validación. Lo que cambia es el lenguaje y la forma de ejecutar el sistema: Spring Boot lleva el servidor dentro del programa, y Laravel se sirve desde un servidor web. Mi conclusión es que elegir uno u otro depende más del lenguaje que conoce el equipo y de dónde se va a ejecutar que de una ventaja absoluta. No comparé rendimiento ni popularidad.
+
 <div class="conceptos-clave">
 <h3>Conceptos clave de este tema</h3>
 <ul class="conceptos-grid">
